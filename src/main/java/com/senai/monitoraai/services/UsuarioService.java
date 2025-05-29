@@ -9,7 +9,6 @@ import com.senai.monitoraai.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -80,6 +79,16 @@ public class UsuarioService {
         UsuarioEntity usuarioEntity = usuarioEntityOptional.get();
         repository.save(usuarioEntity);
 
+    }
+
+    public void deletar(Long id) {
+        Optional<UsuarioEntity> usuarioEntityOptional = repository.findById(id);
+
+        if(usuarioEntityOptional.isEmpty()) {
+            throw new InvalidOperationException("Usuário não encontrado");
+        }
+
+        repository.delete(usuarioEntityOptional.get());
     }
 
     protected boolean validaDuplicidadeEmail(String email) {
