@@ -29,7 +29,7 @@ public class UsuarioService {
             UsuarioListaDTO usuarioListaDTO = new UsuarioListaDTO();
             usuarioListaDTO.setId(usuarioEntity.getId());
             usuarioListaDTO.setNome(usuarioEntity.getNome());
-            usuarioListaDTO.setEmail(usuarioListaDTO.getEmail());
+            usuarioListaDTO.setEmail(usuarioEntity.getEmail());
 
             listaDeUsuariosDTO.add(usuarioListaDTO);
         }
@@ -56,7 +56,6 @@ public class UsuarioService {
         boolean resultado = validaDuplicidadeEmail(usuarioRequestDTO.getEmail());
 
         if(resultado) {
-
             throw new InvalidOperationException("E-mail já cadastrado. Tente outro...");
         }
 
@@ -98,6 +97,6 @@ public class UsuarioService {
             throw new InvalidOperationException("E-mail já cadastrado! Tente outro...");
         };
 
-        return true;
+        return false;
     }
 }

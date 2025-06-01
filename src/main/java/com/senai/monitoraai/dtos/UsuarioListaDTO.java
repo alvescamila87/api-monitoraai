@@ -23,11 +23,11 @@ public class UsuarioListaDTO {
     private String email;
 
     public static UsuarioListaDTO of(UsuarioEntity usuarioEntity) {
-        UsuarioListaDTO usuarioDTO = new UsuarioListaDTO();
-        usuarioDTO.setId(usuarioEntity.getId());
-        usuarioDTO.setNome(usuarioEntity.getNome());
-        usuarioDTO.setEmail(usuarioEntity.getEmail());
+        UsuarioListaDTO usuarioListaDTO = new UsuarioListaDTO();
+        usuarioListaDTO.setId(usuarioEntity.getId());
+        usuarioListaDTO.setNome(usuarioEntity.getNome());
+        usuarioListaDTO.setEmail(usuarioEntity.getEmail());
 
-        return usuarioDTO;
+        return usuarioListaDTO;
     }
 }
