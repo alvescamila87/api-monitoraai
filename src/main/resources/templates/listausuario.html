@@ -13,12 +13,8 @@
 <div class="container mt-3">
     <h1 class="mb-4 text-center">Lista de usuários</h1>
 
-    <div th:if="${param.erro}" class="alert alert-danger" role="alert">
-        <span class="mensagem">Erro ao realizar cadastro do usuário!</span>
-    </div>
-
     <div th:if="${param.sucesso}" class="alert alert-info" role="alert">
-        <span class="mensagem">Usuário cadastrado/alterado com sucesso!</span>
+        <span class="mensagem">Usuário cadastrado com sucesso!</span>
     </div>
 
     <div th:if="${erro}" class="alert alert-danger" role="alert">

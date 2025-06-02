@@ -1,6 +1,6 @@
-package com.senai.monitoraai.controller;
+package com.senai.monitoraai.controller.usuario;
 
-import com.senai.monitoraai.dtos.UsuarioListaDTO;
+import com.senai.monitoraai.dtos.usuario.UsuarioListaDTO;
 import com.senai.monitoraai.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

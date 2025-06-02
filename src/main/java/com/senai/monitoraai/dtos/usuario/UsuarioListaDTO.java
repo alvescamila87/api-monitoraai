@@ -1,9 +1,8 @@
-package com.senai.monitoraai.dtos;
+package com.senai.monitoraai.dtos.usuario;
 
 import com.senai.monitoraai.entities.UsuarioEntity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;

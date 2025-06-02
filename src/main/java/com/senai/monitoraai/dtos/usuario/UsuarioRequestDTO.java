@@ -1,4 +1,4 @@
-package com.senai.monitoraai.dtos;
+package com.senai.monitoraai.dtos.usuario;
 
 import com.senai.monitoraai.entities.UsuarioEntity;
 import jakarta.validation.constraints.Email;

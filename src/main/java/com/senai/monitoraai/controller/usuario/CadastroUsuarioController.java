@@ -1,6 +1,6 @@
-package com.senai.monitoraai.controller;
+package com.senai.monitoraai.controller.usuario;
 
-import com.senai.monitoraai.dtos.UsuarioRequestDTO;
+import com.senai.monitoraai.dtos.usuario.UsuarioRequestDTO;
 import com.senai.monitoraai.exceptions.InvalidOperationException;
 import com.senai.monitoraai.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
