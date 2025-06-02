@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <!-- Define codificação UTF-8 e viewport responsivo para adaptação em dispositivos móveis -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Adicionar o Bootstrap na página-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+        crossorigin="anonymous">
+
+  <!-- adiciona icones do bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Define o título da página na barra superior do navegador -->
+  <title>Login</title>
+
+</head>
+
+<body>
+
+<!-- Container principal -->
+<div class="container">
+
+  <!-- linha justificada -->
+  <div class="row justify-content-center">
+
+    <!-- Define uma coluna que ocupa 4/12 (33%) da largura em telas médias (≥768px) -->
+    <div class="col-md-4">
+
+      <!-- !-- Card com sombra grande (shadow-lg) e margem superior de 3rem (mt-5) -->
+      <div class="card shadow-lg mt-5">
+
+        <!-- Container de conteúdo interno de um card (com padding padrão) -->
+        <div class="card-body">
+
+          <!-- Centraliza conteúdo horizontalmente e adiciona margin-bottom de 24px (1.5rem) -->
+          <h3 class="text-center mb-4">Login</h3>
+
+          <!-- inicio do formulário, deve conter apenas os inputs e botão-->
+          <form method="post" th:action="@{/login}"  th:object="${loginDto}"  >
+
+            <!-- Adiciona uma margem inferior de 1rem (16px) ao elemento -->
+            <div class="mb-3">
+              <label for="user_login" class="form-label">E-mail</label>
+              <input type="email" class="form-control" th:field="*{login}" id="user_login" name="user_login" placeholder="seu_email@gmail.com" required/>
+            </div>
+
+            <!-- Adiciona uma margem inferior de 1rem (16px) ao elemento -->
+            <div class="mb-3">
+              <label for="user_password" class="form-label">Senha</label>
+              <input type="password" class="form-control" th:field="*{senha}" id="user_password" name="user_password" placeholder="Informe sua senha" required/>
+            </div>
+
+            <!-- Botão de confirmação do formulário -->
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary w-100">Login</button>
+            </div>
+
+            <!-- Fim do formulário -->
+          </form>
+          <!-- url passando parametro -> "localhost:8080/login?erro"  -->
+          <div th:if="${param.erro}" class="alert alert-danger" role="alert">
+            <span class="mensagem">Erro ao realizar login do usuário!</span>
+          </div>
+
+          <div th:if="${param.logout}" class="alert alert-info" role="alert">
+            <span class="mensagem">Logout realizado com sucesso!</span>
+          </div>
+
+          <!-- fim do "card-body" -->
+        </div>
+
+        <!-- fim do "card shadow-lg" -->
+      </div>
+
+      <!-- fim do "col-md-4" -->
+    </div>
+
+    <!-- fim do "row justify-content-center" -->
+  </div>
+
+  <!-- fim do Container principal -->
+</div>
+
+<!-- Adiciona javascript do bootstrap-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-YUe2LzesAfftltw+PEaao2tjU/QATaW/rOitAq67e0CT0Zi2VVRL0oC4+gAaeBKu" crossorigin="anonymous"></script>
+
+</body>
+</html>
