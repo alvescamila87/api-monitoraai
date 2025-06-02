@@ -85,7 +85,7 @@ public class UsuarioService {
         repository.save(usuarioEntity);
     }
 
-    public void deletar(Long id) {
+    public boolean deletar(Long id) {
         Optional<UsuarioEntity> usuarioEntityOptional = repository.findById(id);
 
         if(usuarioEntityOptional.isEmpty()) {
@@ -93,6 +93,7 @@ public class UsuarioService {
         }
 
         repository.delete(usuarioEntityOptional.get());
+        return true;
     }
 
     protected boolean validaDuplicidadeEmail(String email) {

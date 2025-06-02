@@ -18,8 +18,12 @@ public class UsuarioController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarUsuario(@PathVariable Long id) {
-        service.deletar(id);
+        boolean resultado = service.deletar(id);
 
-        return ResponseEntity.status(HttpStatus.OK).build();
+        if(resultado) {
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }
+
+        return ResponseEntity.status(404).build();
     }
 }

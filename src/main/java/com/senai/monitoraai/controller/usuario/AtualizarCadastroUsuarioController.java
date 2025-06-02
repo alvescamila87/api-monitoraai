@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-@RequestMapping("/atualizar-produto")
+@RequestMapping("/atualizar-usuario")
 public class AtualizarCadastroUsuarioController {
 
     @Autowired

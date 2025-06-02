@@ -43,7 +43,7 @@
                     <div class="d-flex justify-content-center gap-2">
                         <a th:href="@{'/visualizar-usuario/' + ${usuario.id}}" class="btn btn-secondary">Visualizar</a>
                         <a th:href="@{'/atualizar-usuario/' + ${usuario.id}}" class="btn btn-primary">Editar</a>
-                        <a th:data-produto-id="${usuario.id}" class="excluir-usuario btn btn-danger">Excluir</a>
+                        <a th:data-user-id="${usuario.id}" class="delete-user btn btn-danger">Excluir</a>
                     </div>
                 </td>
                 <td th:text="${usuario.id}"></td>
