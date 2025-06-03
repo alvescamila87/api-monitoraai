@@ -2,8 +2,11 @@ package com.senai.monitoraai.controller.usuario;
 
 import com.senai.monitoraai.dtos.usuario.UsuarioDTO;
 import com.senai.monitoraai.dtos.usuario.UsuarioRequestDTO;
+import com.senai.monitoraai.dtos.usuario.UsuarioSessaoDTO;
 import com.senai.monitoraai.exceptions.InvalidOperationException;
 import com.senai.monitoraai.services.UsuarioService;
+import com.senai.monitoraai.sessao.ControleSessao;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +22,12 @@ public class AtualizarCadastroUsuarioController {
     UsuarioService service;
 
     @GetMapping("/{id}")
-    public String obterAtualizarUsuario(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes){
+    public String obterAtualizarUsuario(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes, HttpServletRequest request){
+
+        UsuarioSessaoDTO usuarioSessaoDTO = ControleSessao.obter(request);
+        if(usuarioSessaoDTO.getId() == 0L){
+            return "redirect:/login-usuario";
+        }
 
         try {
             UsuarioDTO atualizarUsuarioDTO = service.obterUsuarioPorId(id);
