@@ -1,5 +1,6 @@
 package com.senai.monitoraai.entities;
 
+import com.senai.monitoraai.dtos.colaborador.ColaboradorRequestDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,4 +33,13 @@ public class ColaboradorEntity {
 
     @Column(name = "data_nascimento", nullable = false)
     private LocalDate dataNascimento;
+
+    public static ColaboradorEntity of(ColaboradorRequestDTO colaboradorRequestDTO) {
+        ColaboradorEntity colaboradorEntity = new ColaboradorEntity();
+        colaboradorEntity.setNome(colaboradorRequestDTO.getNome());
+        colaboradorEntity.setEmail(colaboradorRequestDTO.getEmail());
+        colaboradorEntity.setCargo(colaboradorRequestDTO.getCargo());
+        colaboradorEntity.setDataNascimento(colaboradorRequestDTO.getDataNascimento());
+        return colaboradorEntity;
+    }
 }
