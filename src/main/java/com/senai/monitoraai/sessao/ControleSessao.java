@@ -13,9 +13,9 @@ public class ControleSessao{
     }
 
     public static UsuarioSessaoDTO obter(HttpServletRequest request){
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
         UsuarioSessaoDTO usuarioSessaoDTO = new UsuarioSessaoDTO();
-        if(session != null){
+        if (session != null) {
             usuarioSessaoDTO.setId((long) session.getAttribute("codigoUsuario"));
             usuarioSessaoDTO.setNome((String) session.getAttribute("nomeUsuario"));
         }

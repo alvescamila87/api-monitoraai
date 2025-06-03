@@ -36,7 +36,7 @@ public class AuthUsuarioController {
         ControleSessao.registrar(request, usuarioSessaoDTO);
 
         if(usuarioSessaoDTO.getId() == 0L){
-            return "redirect:/login-usuario?erro";
+            return "redirect:/login-usuario";
         }
         return "redirect:/home";
     }

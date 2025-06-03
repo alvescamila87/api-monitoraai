@@ -17,8 +17,8 @@ public class HomeController {
 
         UsuarioSessaoDTO usuarioSessaoDTO = ControleSessao.obter(request);
 
-        if(usuarioSessaoDTO.getId() == 0L){
-            return "redirect:/login";
+        if(usuarioSessaoDTO.getId() == 0){
+            return "redirect:/login-usuario";
         }
 
         model.addAttribute("nomeUsuario", usuarioSessaoDTO.getNome());
