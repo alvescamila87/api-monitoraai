@@ -25,7 +25,7 @@ public class AtualizarCadastroUsuarioController {
             UsuarioDTO atualizarUsuarioDTO = service.obterUsuarioPorId(id);
             model.addAttribute("atualizarUsuarioDTO", atualizarUsuarioDTO);
 
-            return "atualizarcadastroproduto";
+            return "atualizarcadastrousuario";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());
             return "redirect:/lista-usuario";

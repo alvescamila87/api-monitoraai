@@ -1,14 +1,12 @@
 package com.senai.monitoraai.services;
 
-import ch.qos.logback.core.util.StringUtil;
-import com.senai.monitoraai.dtos.usuario.UsuarioDTO;
-import com.senai.monitoraai.dtos.usuario.UsuarioListaDTO;
-import com.senai.monitoraai.dtos.usuario.UsuarioRequestDTO;
+import com.senai.monitoraai.dtos.usuario.*;
 import com.senai.monitoraai.entities.UsuarioEntity;
 import com.senai.monitoraai.exceptions.InvalidOperationException;
 import com.senai.monitoraai.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +83,7 @@ public class UsuarioService {
         repository.save(usuarioEntity);
     }
 
-    public boolean deletar(Long id) {
+    public boolean deletarUsuario(Long id) {
         Optional<UsuarioEntity> usuarioEntityOptional = repository.findById(id);
 
         if(usuarioEntityOptional.isEmpty()) {
@@ -94,6 +92,18 @@ public class UsuarioService {
 
         repository.delete(usuarioEntityOptional.get());
         return true;
+    }
+
+    public UsuarioSessaoDTO autenticarUsuario(UsuarioAuthDTO usuarioAuthDTO){
+        UsuarioSessaoDTO usuarioSessaoDTO = new UsuarioSessaoDTO();
+        Optional<UsuarioEntity> usuarioEntityOptional = repository.findByEmail(usuarioAuthDTO.getEmail());
+
+        if(usuarioEntityOptional.isPresent() && usuarioEntityOptional.get().getSenha().equals(usuarioAuthDTO.getSenha())){
+            usuarioSessaoDTO.setId(usuarioEntityOptional.get().getId());
+            usuarioSessaoDTO.setNome(usuarioEntityOptional.get().getNome());
+        }
+
+        return usuarioSessaoDTO;
     }
 
     protected boolean validaDuplicidadeEmail(String email) {
@@ -108,15 +118,15 @@ public class UsuarioService {
 
     protected boolean validarDados(UsuarioRequestDTO usuarioRequestDTO) {
 
-        if(StringUtil.isNullOrEmpty(usuarioRequestDTO.getNome()) || usuarioRequestDTO.getNome().trim().isEmpty()) {
+        if(StringUtils.isBlank(usuarioRequestDTO.getNome()) || usuarioRequestDTO.getNome().trim().isEmpty()) {
             throw new InvalidOperationException("Não é permitido nome em branco ou vazio.");
         }
 
-        if(StringUtil.isNullOrEmpty(usuarioRequestDTO.getEmail()) || usuarioRequestDTO.getEmail().trim().isEmpty()) {
+        if(StringUtils.isBlank(usuarioRequestDTO.getEmail()) || usuarioRequestDTO.getEmail().trim().isEmpty()) {
                 throw new InvalidOperationException("Não é permitido e-mail em branco ou vazio.");
         }
 
-        if(StringUtil.isNullOrEmpty(usuarioRequestDTO.getSenha()) || usuarioRequestDTO.getSenha().trim().isEmpty()) {
+        if(StringUtils.isBlank(usuarioRequestDTO.getSenha()) || usuarioRequestDTO.getSenha().trim().isEmpty()) {
             throw new InvalidOperationException("Não é permitido senha em branco ou vazio.");
         }
 

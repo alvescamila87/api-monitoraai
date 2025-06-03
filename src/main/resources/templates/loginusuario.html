@@ -42,12 +42,12 @@
           <h3 class="text-center mb-4">Login</h3>
 
           <!-- inicio do formulário, deve conter apenas os inputs e botão-->
-          <form method="post" th:action="@{/login}"  th:object="${loginDto}"  >
+          <form method="post" th:action="@{/login-usuario}"  th:object="${usuarioAuthDTO}"  >
 
             <!-- Adiciona uma margem inferior de 1rem (16px) ao elemento -->
             <div class="mb-3">
-              <label for="user_login" class="form-label">E-mail</label>
-              <input type="email" class="form-control" th:field="*{login}" id="user_login" name="user_login" placeholder="seu_email@gmail.com" required/>
+              <label for="user_email" class="form-label">E-mail</label>
+              <input type="email" class="form-control" th:field="*{email}" id="user_email" name="user_email" placeholder="seu_email@gmail.com" required/>
             </div>
 
             <!-- Adiciona uma margem inferior de 1rem (16px) ao elemento -->

@@ -12,6 +12,6 @@ public class LogoutController {
     public String obterLogout(){
 
         //falta o controle de acesso
-        return "redirect:/login";
+        return "redirect:/login-usuario";
     }
 }
