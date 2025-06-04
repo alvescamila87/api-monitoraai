@@ -47,7 +47,9 @@
 
                 <div class="mb-3">
                     <label for="colaborador_data_nascimento" class="form-label">Data de Nascimento</label>
-                    <input th:field="*{dataNascimento}" type="date" class="form-control" id="colaborador_data_nascimento" name="colaborador_data_nascimento" required />
+<!--                    <input th:field="*{dataNascimento}" type="date" class="form-control" id="colaborador_data_nascimento" name="colaborador_data_nascimento" required />-->
+                    <input th:value="${#temporals.format(visualizarColaboradorDTO.dataNascimento, 'dd/MM/yyyy')}" type="date" class="form-control" id="colaborador_data_nascimento" name="colaborador_data_nascimento" disabled />
+
                 </div>
 
                 <div class="text-center mt-4">
