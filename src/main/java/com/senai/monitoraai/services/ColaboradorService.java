@@ -104,6 +104,9 @@ public class ColaboradorService {
         LocalDate hoje = LocalDate.now();
         LocalDate dataLimiteMinima = hoje.minusYears(120);
 
+        if(colaboradorRequestDTO.getDataNascimento() == null){
+            throw new InvalidOperationException("A data de nascimento não pode ser vazia.");
+        }
         if(colaboradorRequestDTO.getDataNascimento().isAfter(hoje)){
             throw new InvalidOperationException("A data de nascimento não pode ser no futuro.");
         }

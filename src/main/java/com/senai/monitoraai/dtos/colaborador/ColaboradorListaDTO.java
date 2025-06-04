@@ -1,11 +1,13 @@
 package com.senai.monitoraai.dtos.colaborador;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.senai.monitoraai.entities.ColaboradorEntity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -16,6 +18,8 @@ public class ColaboradorListaDTO {
     private String nome;
     private String email;
     private String cargo;
+
+    @JsonFormat(pattern = "MM/dd/yyyy")
     private LocalDate dataNascimento;
 
     public static ColaboradorListaDTO of(ColaboradorEntity colaboradorEntity){
@@ -28,4 +32,10 @@ public class ColaboradorListaDTO {
 
         return colaboradorListaDTO;
     }
+
+    public String getDataNascimentoFormatada() {
+        if (dataNascimento == null) return "";
+        return dataNascimento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
+
 }
