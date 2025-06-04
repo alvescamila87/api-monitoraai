@@ -45,7 +45,7 @@
                     <div class="d-flex justify-content-center gap-2">
                         <a th:href="@{'/visualizar-colaborador/' + ${colaborador.id}}" class="btn btn-secondary">Visualizar</a>
                         <a th:href="@{'/atualizar-colaborador/' + ${colaborador.id}}" class="btn btn-primary">Editar</a>
-                        <a th:data-colaborador-id="${colaborador.id}" class="delete-user btn btn-danger">Excluir</a>
+                        <a th:data-colaborador-id="${colaborador.id}" class="delete-colaborador btn btn-danger">Excluir</a>
                     </div>
                 </td>
                 <td th:text="${colaborador.id}"></td>

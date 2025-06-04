@@ -27,7 +27,7 @@ public class ColaboradorDTO {
     @NotBlank
     private String cargo;
 
-    @DateTimeFormat(pattern ="dd/mm/yyyy")
+    @DateTimeFormat(pattern ="dd/MM/yyyy")
     private LocalDate dataNascimento;
 
     public static ColaboradorDTO of(ColaboradorEntity colaboradorEntity){
