@@ -3,10 +3,7 @@ package com.senai.monitoraai.services;
 import com.senai.monitoraai.dtos.colaborador.ColaboradorDTO;
 import com.senai.monitoraai.dtos.colaborador.ColaboradorListaDTO;
 import com.senai.monitoraai.dtos.colaborador.ColaboradorRequestDTO;
-import com.senai.monitoraai.dtos.equipamento.EquipamentoListaDTO;
-import com.senai.monitoraai.dtos.equipamento.EquipamentoRequestDTO;
 import com.senai.monitoraai.entities.ColaboradorEntity;
-import com.senai.monitoraai.entities.EquipamentoEntity;
 import com.senai.monitoraai.exceptions.InvalidOperationException;
 import com.senai.monitoraai.repositories.ColaboradorRepository;
 import org.apache.commons.lang3.StringUtils;
@@ -26,6 +23,7 @@ public class ColaboradorService {
 
     public List<ColaboradorListaDTO> listarColaborador() {
         List<ColaboradorListaDTO> listaColaboradorDTO = new ArrayList<>();
+
         List<ColaboradorEntity> listaColaboradorEntity = repository.findAll();
 
         for(ColaboradorEntity colaboradorEntity : listaColaboradorEntity) {
@@ -45,17 +43,11 @@ public class ColaboradorService {
     }
 
     public void adicionarColaborador(ColaboradorRequestDTO colaboradorRequestDTO) {
-        ColaboradorEntity colaboradorEntity = new ColaboradorEntity();
-
         validaDuplicidadeEmail(colaboradorRequestDTO.getEmail());
+
         validaDados(colaboradorRequestDTO);
 
-        colaboradorEntity.setNome(colaboradorRequestDTO.getNome());
-        colaboradorEntity.setEmail(colaboradorRequestDTO.getEmail());
-        colaboradorEntity.setCargo(colaboradorRequestDTO.getCargo());
-        colaboradorEntity.setDataNascimento(colaboradorRequestDTO.getDataNascimento());
-
-        repository.save(colaboradorEntity);
+        repository.save(ColaboradorEntity.from(colaboradorRequestDTO));
     }
 
     public void atualizarColaborador(Long id, ColaboradorRequestDTO colaboradorRequestDTO) {
@@ -66,11 +58,11 @@ public class ColaboradorService {
         }
 
         Optional<ColaboradorEntity> colaboradorEntityEmail = repository.findByEmail(colaboradorRequestDTO.getEmail());
-        if(colaboradorEntityEmail.isPresent() && colaboradorEntityEmail.get().getId().equals(id)){
-            throw new InvalidOperationException("Email de colaborador ja cadastrado.");
+
+        if(colaboradorEntityEmail.isPresent() && !colaboradorEntityOptional.get().getId().equals(id)){
+            validaDuplicidadeEmail(colaboradorRequestDTO.getEmail());
         }
 
-        validaDuplicidadeEmail(colaboradorRequestDTO.getEmail());
         validaDados(colaboradorRequestDTO);
 
         ColaboradorEntity colaboradorEntity = colaboradorEntityOptional.get();
@@ -92,11 +84,11 @@ public class ColaboradorService {
         repository.delete(colaboradorEntityOptional.get());
     }
 
-    public void validaDuplicidadeEmail(String email){
+    protected void validaDuplicidadeEmail(String email){
         Optional<ColaboradorEntity> colaboradorEntityOptional = repository.findByEmail(email);
 
         if(colaboradorEntityOptional.isPresent()){
-            throw new InvalidOperationException("Email de colaborador já cadastrado...Tente outro.");
+            throw new InvalidOperationException("E-mail já cadastrado! Tente outro...");
         }
     }
 

@@ -1,5 +1,6 @@
 package com.senai.monitoraai.controller.usuario;
 
+import com.senai.monitoraai.exceptions.InvalidOperationException;
 import com.senai.monitoraai.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,12 +19,11 @@ public class UsuarioController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarUsuario(@PathVariable Long id) {
-        boolean resultado = service.deletarUsuario(id);
-
-        if(resultado) {
+        try{
+            service.deletarUsuario(id);
             return ResponseEntity.ok().build();
+        } catch (InvalidOperationException exception){
+            return ResponseEntity.status(404).build();
         }
-
-        return ResponseEntity.status(404).build();
     }
 }

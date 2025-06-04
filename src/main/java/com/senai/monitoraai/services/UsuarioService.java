@@ -25,52 +25,42 @@ public class UsuarioService {
         List<UsuarioEntity> listaDeUsuariosEntity = repository.findAll();
 
         for(UsuarioEntity usuarioEntity: listaDeUsuariosEntity) {
-            UsuarioListaDTO usuarioListaDTO = new UsuarioListaDTO();
-            usuarioListaDTO.setId(usuarioEntity.getId());
-            usuarioListaDTO.setNome(usuarioEntity.getNome());
-            usuarioListaDTO.setEmail(usuarioEntity.getEmail());
-
-            listaDeUsuariosDTO.add(usuarioListaDTO);
+            listaDeUsuariosDTO.add(UsuarioListaDTO.of(usuarioEntity));
         }
 
         return listaDeUsuariosDTO;
     }
 
     public UsuarioDTO obterUsuarioPorId(Long id) {
-        UsuarioDTO usuarioDTO = new UsuarioDTO();
-
         Optional<UsuarioEntity> usuarioEntityOptional = repository.findById(id);
 
         if(usuarioEntityOptional.isEmpty()) {
-            throw new InvalidOperationException("Usuário não encontrado!");
+            throw new InvalidOperationException("Usuário não encontrado.");
         }
 
         return UsuarioDTO.of(usuarioEntityOptional.get());
     }
 
     public void adicionarUsuario(UsuarioRequestDTO usuarioRequestDTO) {
-
-        UsuarioEntity usuarioEntity = new UsuarioEntity();
-
         validaDuplicidadeEmail(usuarioRequestDTO.getEmail());
 
         validarDados(usuarioRequestDTO);
 
-        usuarioEntity.setNome(usuarioRequestDTO.getNome());
-        usuarioEntity.setEmail(usuarioRequestDTO.getEmail());
-        usuarioEntity.setSenha(usuarioRequestDTO.getSenha());
-
-        repository.save(usuarioEntity);
+        repository.save(UsuarioEntity.from(usuarioRequestDTO));
     }
 
     public void atualizarUsuario(Long id, UsuarioRequestDTO usuarioRequestDTO) {
         Optional<UsuarioEntity> usuarioEntityOptional = repository.findById(id);
 
         if(usuarioEntityOptional.isEmpty()) {
-            throw new InvalidOperationException("Usuário não encontrado!");
+            throw new InvalidOperationException("Usuário não encontrado.");
         }
 
-        validaDuplicidadeEmail(usuarioRequestDTO.getEmail());
+        Optional<UsuarioEntity> usuarioEntityEmail = repository.findByEmail(usuarioRequestDTO.getEmail());
+
+        if(usuarioEntityEmail.isPresent() && !usuarioEntityOptional.get().getId().equals(id)){
+            validaDuplicidadeEmail(usuarioRequestDTO.getEmail());
+        }
 
         if(!usuarioRequestDTO.getNome().isEmpty() || !usuarioRequestDTO.getSenha().isEmpty() || !usuarioRequestDTO.getEmail().isEmpty()) {
             validarDados(usuarioRequestDTO);
@@ -83,15 +73,14 @@ public class UsuarioService {
         repository.save(usuarioEntity);
     }
 
-    public boolean deletarUsuario(Long id) {
+    public void deletarUsuario(Long id) {
         Optional<UsuarioEntity> usuarioEntityOptional = repository.findById(id);
 
         if(usuarioEntityOptional.isEmpty()) {
-            throw new InvalidOperationException("Usuário não encontrado");
+            throw new InvalidOperationException("Usuário não encontrado.");
         }
 
         repository.delete(usuarioEntityOptional.get());
-        return true;
     }
 
     public UsuarioSessaoDTO autenticarUsuario(UsuarioAuthDTO usuarioAuthDTO){
@@ -106,17 +95,16 @@ public class UsuarioService {
         return usuarioSessaoDTO;
     }
 
-    protected boolean validaDuplicidadeEmail(String email) {
+    protected void validaDuplicidadeEmail(String email) {
         Optional<UsuarioEntity> usuarioEntity = repository.findByEmail(email);
 
         if(usuarioEntity.isPresent()) {
             throw new InvalidOperationException("E-mail já cadastrado! Tente outro...");
-        };
+        }
 
-        return false;
     }
 
-    protected boolean validarDados(UsuarioRequestDTO usuarioRequestDTO) {
+    protected void validarDados(UsuarioRequestDTO usuarioRequestDTO) {
 
         if(StringUtils.isBlank(usuarioRequestDTO.getNome()) || usuarioRequestDTO.getNome().trim().isEmpty()) {
             throw new InvalidOperationException("Não é permitido nome em branco ou vazio.");
@@ -134,6 +122,5 @@ public class UsuarioService {
             throw new InvalidOperationException("A senha deve possuir pelo menos 5 caracteres.");
         }
 
-        return false;
     }
 }

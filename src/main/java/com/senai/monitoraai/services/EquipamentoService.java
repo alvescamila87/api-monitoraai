@@ -27,26 +27,16 @@ public class EquipamentoService {
         List<EquipamentoEntity> listaEquipamentosEntity = repository.findAll();
 
         for(EquipamentoEntity equipamentoEntity : listaEquipamentosEntity) {
-            EquipamentoListaDTO equipamentoListaDTO = new EquipamentoListaDTO();
-            equipamentoListaDTO.setId(equipamentoEntity.getId());
-            equipamentoListaDTO.setDescricao(equipamentoEntity.getDescricao());
-            equipamentoListaDTO.setTipo(equipamentoEntity.getTipo());
-
-            listaEquipamentosDTO.add(equipamentoListaDTO);
+            listaEquipamentosDTO.add(EquipamentoListaDTO.of(equipamentoEntity));
         }
 
         return listaEquipamentosDTO;
     }
 
     public void adicionarEquipamento(EquipamentoRequestDTO equipamentoRequestDTO) {
-        EquipamentoEntity equipamentoEntity = new EquipamentoEntity();
-
         validaDados(equipamentoRequestDTO);
 
-        equipamentoEntity.setTipo(equipamentoRequestDTO.getTipo());
-        equipamentoEntity.setDescricao(equipamentoRequestDTO.getDescricao());
-
-        repository.save(equipamentoEntity);
+        repository.save(EquipamentoEntity.from(equipamentoRequestDTO));
     }
 
     public void atualizarEquipamento(Long id, EquipamentoRequestDTO equipamentoRequestDTO) {
@@ -56,7 +46,9 @@ public class EquipamentoService {
             throw new InvalidOperationException("Equipamento não encontrado.");
         }
 
-        validaDados(equipamentoRequestDTO);
+        if(!equipamentoRequestDTO.getTipo().isEmpty() || !equipamentoRequestDTO.getDescricao().isEmpty()) {
+            validaDados(equipamentoRequestDTO);
+        }
 
         EquipamentoEntity equipamentoEntity = equipamentoEntityOptional.get();
         equipamentoEntity.setTipo(equipamentoRequestDTO.getTipo());

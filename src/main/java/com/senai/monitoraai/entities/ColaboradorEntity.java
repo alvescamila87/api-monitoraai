@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -25,7 +24,7 @@ public class ColaboradorEntity {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name = "email", unique = true, nullable = false)
+    @Column(name = "email", nullable = false)
     private String email;
 
     @Column(name = "cargo", nullable = false)
@@ -34,7 +33,7 @@ public class ColaboradorEntity {
     @Column(name = "data_nascimento", nullable = false)
     private LocalDate dataNascimento;
 
-    public static ColaboradorEntity of(ColaboradorRequestDTO colaboradorRequestDTO) {
+    public static ColaboradorEntity from(ColaboradorRequestDTO colaboradorRequestDTO) {
         ColaboradorEntity colaboradorEntity = new ColaboradorEntity();
         colaboradorEntity.setNome(colaboradorRequestDTO.getNome());
         colaboradorEntity.setEmail(colaboradorRequestDTO.getEmail());
