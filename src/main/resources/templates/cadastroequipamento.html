@@ -12,9 +12,11 @@
 
 <div class="container mt-5 d-flex justify-content-center">
     <div class="card shadow w-50">
+
         <div class="card-header bg-primary text-white text-center">
             <h5>Cadastrar equipamento</h5>
         </div>
+
         <div class="card-body">
 
             <div th:if="${erro}" class="alert alert-danger" role="alert">
@@ -24,7 +26,7 @@
             <form th:action="@{/cadastro-equipamento}" method="post" th:object="${equipamentoRequestDTO}">                
 
                 <div class="mb-3">
-                    <label for="equipamento_tipo" class="form-label">Nome</label>
+                    <label for="equipamento_tipo" class="form-label">Tipo de equipamento</label>
                     <input th:field="*{tipo}" type="text" class="form-control" id="equipamento_tipo" name="equipamento_tipo" placeholder="Informe tipo / categoria de equipamento" required />
                 </div>
 
@@ -33,7 +35,7 @@
 
                 <div class="text-center mt-4">
                     <button type="submit" class="btn btn-primary">Salvar</button>
-                    <a th:href="@{/lista-equiapmento}" class="btn btn-secondary ms-2">Cancelar</a>
+                    <a th:href="@{/lista-equipamento}" class="btn btn-secondary ms-2">Cancelar</a>
                 </div>
 
             </form>

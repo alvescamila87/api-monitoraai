@@ -1,5 +1,6 @@
 package com.senai.monitoraai.services;
 
+import com.senai.monitoraai.dtos.equipamento.EquipamentoDTO;
 import com.senai.monitoraai.dtos.equipamento.EquipamentoListaDTO;
 import com.senai.monitoraai.dtos.equipamento.EquipamentoRequestDTO;
 import com.senai.monitoraai.entities.EquipamentoEntity;
@@ -73,6 +74,16 @@ public class EquipamentoService {
 
         repository.delete(equipamentoEntityOptional.get());
         return true;
+    }
+
+    public EquipamentoDTO obterEquipamentoPorId(Long id) {
+        Optional<EquipamentoEntity> equipamentoEntityOptional = repository.findById(id);
+
+        if(equipamentoEntityOptional.isEmpty()) {
+            throw new InvalidOperationException("Equipamento não encontrado.");
+        }
+
+        return EquipamentoDTO.of(equipamentoEntityOptional.get());
     }
 
     protected void validaDados(EquipamentoRequestDTO equipamentoRequestDTO) {

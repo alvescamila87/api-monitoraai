@@ -33,7 +33,7 @@
             <tr>
                 <th scope="col">Ações</th>
                 <th scope="col">ID</th>
-                <th scope="col">Tipo</th>
+                <th scope="col">Tipo de equipamento</th>
                 <th scope="col">Descrição</th>              
             </tr>
             </thead>
@@ -43,7 +43,7 @@
                     <div class="d-flex justify-content-center gap-2">
                         <a th:href="@{'/visualizar-equipamento/' + ${equipamento.id}}" class="btn btn-secondary">Visualizar</a>
                         <a th:href="@{'/atualizar-equipamento/' + ${equipamento.id}}" class="btn btn-primary">Editar</a>
-                        <a th:data-user-id="${equipamento.id}" class="delete-equipment btn btn-danger">Excluir</a>
+                        <a th:data-equipment-id="${equipamento.id}" class="delete-equipment btn btn-danger">Excluir</a>
                     </div>
                 </td>
                 <td th:text="${equipamento.id}"></td>

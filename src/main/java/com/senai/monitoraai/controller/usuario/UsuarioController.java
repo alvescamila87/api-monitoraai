@@ -21,7 +21,7 @@ public class UsuarioController {
         boolean resultado = service.deletarUsuario(id);
 
         if(resultado) {
-            return ResponseEntity.status(HttpStatus.OK).build();
+            return ResponseEntity.ok().build();
         }
 
         return ResponseEntity.status(404).build();

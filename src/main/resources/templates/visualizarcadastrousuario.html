@@ -15,6 +15,11 @@
         <div class="card-header bg-primary text-white text-center">
             <h5>Visualizar usuário</h5>
         </div>
+
+        <div th:if="${param.sucesso}" class="alert alert-info" role="alert">
+            <span class="mensagem">Usuário visualizado com sucesso!</span>
+        </div>
+
         <div class="card-body">
             <form th:action="@{'/visualizar-usuario/' + ${visualizarUsuarioDTO.id}}" method="get" th:object="${visualizarUsuarioDTO}">
 
@@ -37,12 +42,7 @@
                 <div class="text-center mt-4">
                     <button type="submit" class="btn btn-primary" disabled>Salvar</button>
                     <a th:href="@{/lista-usuario}" class="btn btn-secondary ms-2">Cancelar</a>
-                </div>
-
-                <div th:if="${param.sucesso}" class="alert alert-info" role="alert">
-                    <span class="mensagem">Usuário visualizado com sucesso!</span>
-                </div>
-
+                </div>              
 
             </form>
         </div>

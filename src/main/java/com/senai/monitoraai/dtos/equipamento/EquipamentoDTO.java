@@ -17,8 +17,8 @@ public class EquipamentoDTO {
     public static EquipamentoDTO of(EquipamentoEntity equipamentoEntity) {
         EquipamentoDTO equipamentoDTO = new EquipamentoDTO();
         equipamentoDTO.setId(equipamentoEntity.getId());
-        equipamentoDTO.setDescricao(equipamentoEntity.getDescricao());
         equipamentoDTO.setTipo(equipamentoEntity.getTipo());
+        equipamentoDTO.setDescricao(equipamentoEntity.getDescricao());
 
         return equipamentoDTO;
     }
