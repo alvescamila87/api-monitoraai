@@ -26,7 +26,7 @@ public class ListarColaboradorController {
         UsuarioSessaoDTO usuarioSessaoDTO = ControleSessao.obter(request);
 
         if (usuarioSessaoDTO.getId() == 0){
-            return "redirect:/loginusuario";
+            return "redirect:/login-usuario";
         }
 
         List<ColaboradorListaDTO> colaboradorListaDTO = service.listarColaborador();
