@@ -15,7 +15,7 @@ public class EmprestimoService {
     @Autowired
     EmprestimoRepository repository;
 
-    public List<EmprestimoListaDTO> listaEquipamentos() {
+    public List<EmprestimoListaDTO> listaEmprestimo() {
         List<EmprestimoListaDTO> listaEmprestimosDTO = new ArrayList<>();
 
         List<EmprestimoEntity> listaEmprestimoEntity = repository.findAll();

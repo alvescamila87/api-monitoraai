@@ -15,8 +15,8 @@ public class EmprestimoRequestDTO {
     private Long colaboradorId;
     private Long equipamentoId;
     private LocalDate dataEmprestimo;
-    //private LocalDate dataDevolucao;
-    //private String observacao;
+    private LocalDate dataDevolucao;
+    private String observacao;
 
     public static EmprestimoRequestDTO of(EmprestimoEntity emprestimoEntity) {
         EmprestimoRequestDTO emprestimoRequestDTO = new EmprestimoRequestDTO();
