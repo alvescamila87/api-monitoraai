@@ -55,7 +55,7 @@ public class CadastroEmprestimoController {
     @PostMapping
     public String adicionarEmprestimo(@ModelAttribute("emprestimoRequestDTO") EmprestimoRequestDTO emprestimoRequestDTO, RedirectAttributes redirectAttributes) {
         try {
-            service.adicionarEmprestimo(emprestimoRequestDTO);
+            //service.adicionarEmprestimo(emprestimoRequestDTO);
             return "redirect:/lista-emprestimo?sucesso";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());
