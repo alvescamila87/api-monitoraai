@@ -45,6 +45,8 @@ public class EmprestimoService {
     }
 
     public void emprestarEquipamento(EmprestimoRequestDTO emprestimoRequestDTO) {
+        validaDuplicidadeEmprestimo(emprestimoRequestDTO);
+
         validaDadosEmprestimo(emprestimoRequestDTO);
 
         Optional<ColaboradorEntity> colaboradorEntityOptional = colaboradorRepository.findById(emprestimoRequestDTO.getColaboradorId());
@@ -110,6 +112,14 @@ public class EmprestimoService {
             throw new InvalidOperationException("Informe a observação de devolução.");
         }
 
+    }
+
+    protected void validaDuplicidadeEmprestimo(EmprestimoRequestDTO emprestimoRequestDTO) {
+        boolean jaEmprestado = repository.existsByEquipamentoIdAndDataDevolucaoIsNull(emprestimoRequestDTO.getEquipamentoId());
+
+        if(jaEmprestado) {
+            throw new InvalidOperationException("Equipamento já emprestado. Cadastre um novo equipamento para realizar o empréstimo");
+        }
     }
 
 }
