@@ -26,8 +26,6 @@ public class EmprestimoRequestDTO {
         emprestimoRequestDTO.setColaboradorId(emprestimoEntity.getColaborador().getId());
         emprestimoRequestDTO.setEquipamentoId(emprestimoEntity.getEquipamento().getId());
         emprestimoRequestDTO.setDataEmprestimo(emprestimoEntity.getDataEmprestimo());
-        //emprestimoDTO.setDataDevolucao(emprestimoEntity.getDataDevolucao());
-        //emprestimoDTO.setObservacao(emprestimoEntity.getObservacao());
 
         return emprestimoRequestDTO;
     }

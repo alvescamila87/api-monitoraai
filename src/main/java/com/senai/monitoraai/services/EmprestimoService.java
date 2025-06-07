@@ -1,9 +1,6 @@
 package com.senai.monitoraai.services;
 
-import com.senai.monitoraai.dtos.emprestimo.DevolverRequestDTO;
-import com.senai.monitoraai.dtos.emprestimo.EmprestimoDTO;
-import com.senai.monitoraai.dtos.emprestimo.EmprestimoListaDTO;
-import com.senai.monitoraai.dtos.emprestimo.EmprestimoRequestDTO;
+import com.senai.monitoraai.dtos.emprestimo.*;
 import com.senai.monitoraai.entities.ColaboradorEntity;
 import com.senai.monitoraai.entities.EmprestimoEntity;
 import com.senai.monitoraai.entities.EquipamentoEntity;
@@ -93,6 +90,16 @@ public class EmprestimoService {
         }
 
         return EmprestimoDTO.of(emprestimoEntityOptional.get());
+    }
+
+    public HistoricoDTO obterHistoricoPorId(Long id) {
+        Optional<EmprestimoEntity> emprestimoEntityOptional = repository.findById(id);
+
+        if(emprestimoEntityOptional.isEmpty()) {
+            throw new InvalidOperationException("Empréstimo não encontrado.");
+        }
+
+        return HistoricoDTO.of(emprestimoEntityOptional.get());
     }
 
     protected void validaDadosEmprestimo(EmprestimoRequestDTO emprestimoRequestDTO){

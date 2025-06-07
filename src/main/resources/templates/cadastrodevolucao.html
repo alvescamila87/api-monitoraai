@@ -34,7 +34,7 @@
 
         <div class="mb-3">
           <label for="devolucao_data_emprestimo" class="form-label">Data de empréstimo</label>
-          <input th:field="*{dataEmprestimo}" type="date" class="form-control" id="devolucao_data_emprestimo" name="devolucao_data_emprestimo" disabled />
+          <input th:field="*{dataEmprestimo}" type="text" class="form-control" id="devolucao_data_emprestimo" name="devolucao_data_emprestimo" disabled />
         </div>
 
 
@@ -52,12 +52,17 @@
 
         <div class="mb-3">
           <label for="devolucao_data_devolucao" class="form-label">Data de devolução</label>
-          <input th:field="*{dataDevolucao}" type="date" class="form-control" id="devolucao_data_devolucao" name="devolucao_data_devolucao" disabled />
+          <input th:field="*{dataDevolucao}" type="text" class="form-control" id="devolucao_data_devolucao" name="devolucao_data_devolucao" disabled />
         </div>
 
         <div class="mb-3">
           <label for="observacao" class="form-label">Detalhes da devolução</label>
-          <input th:field="*{observacao}" type="text" class="form-control" id="observacao" name="observacao" required />
+          <textarea th:field="*{observacao}"
+                    class="form-control"
+                    id="observacao"
+                    name="observacao"
+                    required
+                    rows="4"></textarea>
         </div>
 
         <div class="text-center mt-4">

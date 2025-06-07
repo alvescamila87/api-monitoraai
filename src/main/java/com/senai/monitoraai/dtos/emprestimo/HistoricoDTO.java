@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class EmprestimoListaDTO {
+public class HistoricoDTO {
 
     private Long id;
     private String nomeColaborador;
@@ -21,18 +21,18 @@ public class EmprestimoListaDTO {
     private LocalDate dataEmprestimo;
     @DateTimeFormat(pattern ="dd/MM/yyyy")
     private LocalDate dataDevolucao;
-
     private String observacao;
 
-    public static EmprestimoListaDTO of(EmprestimoEntity emprestimoEntity) {
-        EmprestimoListaDTO emprestimoListaDTO = new EmprestimoListaDTO();
-        emprestimoListaDTO.setId(emprestimoEntity.getId());
-        emprestimoListaDTO.setNomeColaborador(emprestimoEntity.getColaborador().getNome());
-        emprestimoListaDTO.setTipoEquipamento(emprestimoEntity.getEquipamento().getTipo());
-        emprestimoListaDTO.setDataEmprestimo(emprestimoEntity.getDataEmprestimo());
-        emprestimoListaDTO.setDataDevolucao(emprestimoEntity.getDataDevolucao());
+    public static HistoricoDTO of(EmprestimoEntity emprestimoEntity) {
+        HistoricoDTO historicoDTO = new HistoricoDTO();
+        historicoDTO.setId(emprestimoEntity.getId());
+        historicoDTO.setNomeColaborador(emprestimoEntity.getColaborador().getNome());
+        historicoDTO.setTipoEquipamento(emprestimoEntity.getEquipamento().getTipo());
+        historicoDTO.setDataEmprestimo(emprestimoEntity.getDataEmprestimo());
+        historicoDTO.setDataDevolucao(emprestimoEntity.getDataDevolucao());
+        historicoDTO.setObservacao(emprestimoEntity.getObservacao());
 
-        return emprestimoListaDTO;
+        return historicoDTO;
     }
 
     public String getDataEmprestimoFormatada() {
