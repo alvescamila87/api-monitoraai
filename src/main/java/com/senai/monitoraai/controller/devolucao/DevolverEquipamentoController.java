@@ -55,10 +55,10 @@ public class DevolverEquipamentoController {
     public String devolverEquipamento(@PathVariable Long id, @ModelAttribute("devolverRequestDTO") DevolverRequestDTO devolverRequestDTO, RedirectAttributes redirectAttributes) {
         try {
             emprestimoService.devolverEquipamento(id, devolverRequestDTO);
-            return "redirect:/lista-emprestimo?sucesso";
+            return "redirect:/lista-emprestimo?sucesso_devolucao";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());
-            return "redirect:/devolver-equipamento";
+            return "redirect:/devolver-equipamento" + id;
         }
     }
 }

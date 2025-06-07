@@ -17,11 +17,15 @@
     </div>
     <div class="card-body">
 
+      <div th:if="${param.sucesso}" class="alert alert-info" role="alert">
+        <span class="mensagem">Equipamento cadastrado/atualizado com sucesso!</span>
+      </div>
+
       <div th:if="${erro}" class="alert alert-danger" role="alert">
         <span class="mensagem" th:text="${erro}">Erro</span>
       </div>
 
-      <form th:action="@{'/devolver-equipamento/' + ${devolverRequestDTO.id}}" method="get" th:object="${devolverRequestDTO}">
+      <form th:action="@{'/devolver-equipamento/' + ${devolverRequestDTO.id}}" method="post" th:object="${devolverRequestDTO}">
 
         <div class="mb-3">
           <label for="devolucao_emprestimo_id" class="form-label">ID</label>

@@ -58,7 +58,7 @@ public class CadastroEmprestimoController {
     public String emprestarEquipamento(@ModelAttribute("emprestimoRequestDTO") EmprestimoRequestDTO emprestimoRequestDTO, RedirectAttributes redirectAttributes) {
         try {
             emprestimoService.emprestarEquipamento(emprestimoRequestDTO);
-            return "redirect:/lista-emprestimo?sucesso";
+            return "redirect:/lista-emprestimo?sucesso_emprestimo";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());
             return "redirect:/cadastro-emprestimo";

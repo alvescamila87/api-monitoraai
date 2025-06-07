@@ -45,7 +45,7 @@ public class EmprestimoService {
     }
 
     public void emprestarEquipamento(EmprestimoRequestDTO emprestimoRequestDTO) {
-        validaDados(emprestimoRequestDTO);
+        validaDadosEmprestimo(emprestimoRequestDTO);
 
         Optional<ColaboradorEntity> colaboradorEntityOptional = colaboradorRepository.findById(emprestimoRequestDTO.getColaboradorId());
 
@@ -74,7 +74,9 @@ public class EmprestimoService {
             throw new InvalidOperationException("Empréstimo não encontrado.");
         }
 
-        EmprestimoEntity emprestimoEntity = new EmprestimoEntity();
+        validaDadosDevolucao(devolverRequestDTO);
+
+        EmprestimoEntity emprestimoEntity = emprestimoEntityOptional.get();
         emprestimoEntity.setDataDevolucao(LocalDate.now());
         emprestimoEntity.setObservacao(devolverRequestDTO.getObservacao());
 
@@ -91,7 +93,7 @@ public class EmprestimoService {
         return EmprestimoDTO.of(emprestimoEntityOptional.get());
     }
 
-    protected void validaDados(EmprestimoRequestDTO emprestimoRequestDTO){
+    protected void validaDadosEmprestimo(EmprestimoRequestDTO emprestimoRequestDTO){
 
         if(emprestimoRequestDTO.getColaboradorId() == null) {
             throw new InvalidOperationException("Informe o colaborador.");
@@ -100,6 +102,14 @@ public class EmprestimoService {
         if(emprestimoRequestDTO.getEquipamentoId() == null) {
             throw new InvalidOperationException("Informe o equipamento.");
         }
+    }
+
+    protected void validaDadosDevolucao(DevolverRequestDTO devolverRequestDTO){
+
+        if(devolverRequestDTO.getObservacao() == null) {
+            throw new InvalidOperationException("Informe a observação de devolução.");
+        }
+
     }
 
 }

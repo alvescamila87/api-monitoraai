@@ -13,8 +13,12 @@
 <div class="container mt-3">
     <h1 class="mb-4 text-center">Histórico de empréstimos</h1>
 
-    <div th:if="${param.sucesso}" class="alert alert-info" role="alert">
-        <span class="mensagem">Empréstimo cadastrado com sucesso!</span>
+    <div th:if="${param.sucesso_devolucao}" class="alert alert-info" role="alert">
+        <span class="mensagem">Equipamento devolvido com sucesso!</span>
+    </div>
+
+    <div th:if="${param.sucesso_emprestimo}" class="alert alert-info" role="alert">
+        <span class="mensagem">Equipamento emprestado com sucesso!</span>
     </div>
 
     <div th:if="${erro}" class="alert alert-danger" role="alert">
