@@ -12,13 +12,21 @@
 
 <div class="container mt-5 d-flex justify-content-center">
   <div class="card shadow w-50">
+    <div class="card-header bg-primary text-white text-center">
+      <h5>Devolver equipamento</h5>
+    </div>
     <div class="card-body">
 
       <div th:if="${erro}" class="alert alert-danger" role="alert">
         <span class="mensagem" th:text="${erro}">Erro</span>
       </div>
 
-      <form th:action="@{'/devolver-equipamento/' + ${devolverRequestDTO.id}}" method="post" th:object="${devolverRequestDTO}">
+      <form th:action="@{'/devolver-equipamento/' + ${devolverRequestDTO.id}}" method="get" th:object="${devolverRequestDTO}">
+
+        <div class="mb-3">
+          <label for="devolucao_emprestimo_id" class="form-label">ID</label>
+          <input th:field="*{id}" type="number" class="form-control" id="devolucao_emprestimo_id" name="devolucao_emprestimo_id" disabled />
+        </div>
 
         <div class="mb-3">
           <label for="devolucao_data_emprestimo" class="form-label">Data de empréstimo</label>
@@ -28,13 +36,13 @@
 
         <div class="mb-3">
           <label for="devolucao_colaborador" class="form-label">Colaborador</label>
-          <input th:field="*{nomeColaborador}" type="date" class="form-control" id="devolucao_colaborador" name="devolucao_colaborador" disabled />
+          <input th:field="*{colaboradorId}" type="text" class="form-control" id="devolucao_colaborador" name="devolucao_colaborador" disabled />
           </select>
         </div>
 
         <div class="mb-3">
           <label for="devolucao_tipo_equipamento" class="form-label">Equipamento</label>
-          <input th:field="*{tipoEquipamento}" type="date" class="form-control" id="devolucao_tipo_equipamento" name="devolucao_tipo_equipamento" disabled />
+          <input th:field="*{equipamentoId}" type="text" class="form-control" id="devolucao_tipo_equipamento" name="devolucao_tipo_equipamento" disabled />
           </select>
         </div>
 

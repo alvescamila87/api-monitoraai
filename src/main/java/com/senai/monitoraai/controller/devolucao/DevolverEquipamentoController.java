@@ -3,6 +3,7 @@ package com.senai.monitoraai.controller.devolucao;
 import com.senai.monitoraai.dtos.colaborador.ColaboradorListaDTO;
 import com.senai.monitoraai.dtos.emprestimo.DevolverRequestDTO;
 import com.senai.monitoraai.dtos.emprestimo.EmprestimoDTO;
+import com.senai.monitoraai.dtos.emprestimo.EmprestimoRequestDTO;
 import com.senai.monitoraai.dtos.equipamento.EquipamentoListaDTO;
 import com.senai.monitoraai.exceptions.InvalidOperationException;
 import com.senai.monitoraai.services.ColaboradorService;
@@ -11,9 +12,7 @@ import com.senai.monitoraai.services.EquipamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -31,7 +30,7 @@ public class DevolverEquipamentoController {
     @Autowired
     EquipamentoService equipamentoService;
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public String obterDevolucaoDeEmprestimo(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
 
         try {
@@ -49,6 +48,17 @@ public class DevolverEquipamentoController {
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());
             return "redirect:/lista-emprestimo";
+        }
+    }
+
+    @PostMapping("/{id}")
+    public String devolverEquipamento(@PathVariable Long id, @ModelAttribute("devolverRequestDTO") DevolverRequestDTO devolverRequestDTO, RedirectAttributes redirectAttributes) {
+        try {
+            emprestimoService.devolverEquipamento(id, devolverRequestDTO);
+            return "redirect:/lista-emprestimo?sucesso";
+        } catch (InvalidOperationException exception) {
+            redirectAttributes.addFlashAttribute("erro", exception.getMessage());
+            return "redirect:/devolver-equipamento";
         }
     }
 }
