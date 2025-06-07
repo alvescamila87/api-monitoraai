@@ -44,7 +44,10 @@
                 <td>
                     <div class="d-flex justify-content-center gap-2">
                         <a th:href="@{'/visualizar-emprestimo/' + ${emprestimo.id}}" class="btn btn-secondary">Visualizar</a>
-                        <a th:href="@{'/devolver-equipamento/' + ${emprestimo.id}}" class="btn btn-danger">Devolver</a>
+                        <a th:if="${emprestimo.dataDevolucaoFormatada != null}"
+                           th:href="@{'/devolver-equipamento/' + ${emprestimo.id}}"
+                           class="btn btn-danger">Devolver
+                        </a>
                     </div>
                 </td>
                 <td th:text="${emprestimo.id}"></td>

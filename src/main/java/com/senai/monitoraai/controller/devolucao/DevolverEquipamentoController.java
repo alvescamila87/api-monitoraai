@@ -1,7 +1,8 @@
-package com.senai.monitoraai.controller.emprestimo;
+package com.senai.monitoraai.controller.devolucao;
 
 import com.senai.monitoraai.dtos.colaborador.ColaboradorListaDTO;
-import com.senai.monitoraai.dtos.emprestimo.EmprestimoRequestDTO;
+import com.senai.monitoraai.dtos.emprestimo.DevolverRequestDTO;
+import com.senai.monitoraai.dtos.emprestimo.EmprestimoDTO;
 import com.senai.monitoraai.dtos.equipamento.EquipamentoListaDTO;
 import com.senai.monitoraai.exceptions.InvalidOperationException;
 import com.senai.monitoraai.services.ColaboradorService;
@@ -11,17 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller
-@RequestMapping("/cadastro-emprestimo")
-public class CadastroEmprestimoController {
+@RequestMapping("/devolver-equipamento")
+public class DevolverEquipamentoController {
 
     @Autowired
     EmprestimoService emprestimoService;
@@ -32,13 +31,13 @@ public class CadastroEmprestimoController {
     @Autowired
     EquipamentoService equipamentoService;
 
-    @GetMapping
-    public String obterEmprestimo(Model model, RedirectAttributes redirectAttributes) {
+    @GetMapping("/id")
+    public String obterDevolucaoDeEmprestimo(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
 
         try {
-            EmprestimoRequestDTO emprestimoRequestDTO = new EmprestimoRequestDTO();
-            emprestimoRequestDTO.setDataEmprestimo(LocalDate.now());
-            model.addAttribute("emprestimoRequestDTO", emprestimoRequestDTO);
+            EmprestimoDTO devolverRequestDTO = emprestimoService.obterEmprestimoPorId(id);
+            //devolverRequestDTO.setDataDevolucao(LocalDate.now());
+            model.addAttribute("devolverRequestDTO", devolverRequestDTO);
 
             List<ColaboradorListaDTO> listaColaboradorDTO = colaboradorService.listarColaborador();
             model.addAttribute("listaColaboradorDTO", listaColaboradorDTO);
@@ -46,22 +45,10 @@ public class CadastroEmprestimoController {
             List<EquipamentoListaDTO> listaEquipamentoDTO = equipamentoService.listarEquipamentos();
             model.addAttribute("listaEquipamentoDTO", listaEquipamentoDTO);
 
-            return "cadastroemprestimo";
+            return "cadastrodevolucao";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());
             return "redirect:/lista-emprestimo";
-        }
-    }
-
-
-    @PostMapping
-    public String emprestarEquipamento(@ModelAttribute("emprestimoRequestDTO") EmprestimoRequestDTO emprestimoRequestDTO, RedirectAttributes redirectAttributes) {
-        try {
-            emprestimoService.emprestarEquipamento(emprestimoRequestDTO);
-            return "redirect:/lista-emprestimo?sucesso";
-        } catch (InvalidOperationException exception) {
-            redirectAttributes.addFlashAttribute("erro", exception.getMessage());
-            return "redirect:/cadastro-emprestimo";
         }
     }
 }

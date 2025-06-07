@@ -1,5 +1,7 @@
 package com.senai.monitoraai.services;
 
+import com.senai.monitoraai.dtos.emprestimo.DevolverRequestDTO;
+import com.senai.monitoraai.dtos.emprestimo.EmprestimoDTO;
 import com.senai.monitoraai.dtos.emprestimo.EmprestimoListaDTO;
 import com.senai.monitoraai.dtos.emprestimo.EmprestimoRequestDTO;
 import com.senai.monitoraai.entities.ColaboradorEntity;
@@ -62,6 +64,31 @@ public class EmprestimoService {
         emprestimoEntity.setEquipamento(equipamentoEntityOptional.get());
         emprestimoEntity.setDataEmprestimo(LocalDate.now());
         repository.save(emprestimoEntity);
+    }
+
+    public void devolverEquipamento(Long id, DevolverRequestDTO devolverRequestDTO) {
+
+        Optional<EmprestimoEntity> emprestimoEntityOptional = repository.findById(id);
+
+        if(emprestimoEntityOptional.isEmpty()) {
+            throw new InvalidOperationException("Empréstimo não encontrado.");
+        }
+
+        EmprestimoEntity emprestimoEntity = new EmprestimoEntity();
+        emprestimoEntity.setDataDevolucao(LocalDate.now());
+        emprestimoEntity.setObservacao(devolverRequestDTO.getObservacao());
+
+        repository.save(emprestimoEntity);
+    }
+
+    public EmprestimoDTO obterEmprestimoPorId(Long id) {
+        Optional<EmprestimoEntity> emprestimoEntityOptional = repository.findById(id);
+
+        if(emprestimoEntityOptional.isEmpty()) {
+            throw new InvalidOperationException("Empréstimo não encontrado.");
+        }
+
+        return EmprestimoDTO.of(emprestimoEntityOptional.get());
     }
 
     protected void validaDados(EmprestimoRequestDTO emprestimoRequestDTO){

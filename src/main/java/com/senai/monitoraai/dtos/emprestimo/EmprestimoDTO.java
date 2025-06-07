@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -32,5 +33,15 @@ public class EmprestimoDTO {
         emprestimoDTO.setObservacao(emprestimoEntity.getObservacao());
 
         return emprestimoDTO;
+    }
+
+    public String getDataEmprestimoFormatada() {
+        if (dataEmprestimo == null) return "";
+        return dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
+
+    public String getDataDevolucaoFormatada() {
+        if (dataDevolucao == null) return "";
+        return dataDevolucao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 }
