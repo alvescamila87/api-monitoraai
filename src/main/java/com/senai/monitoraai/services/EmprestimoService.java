@@ -12,6 +12,7 @@ import com.senai.monitoraai.repositories.EquipamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,22 +35,43 @@ public class EmprestimoService {
         List<EmprestimoEntity> listaEmprestimoEntity = repository.findAll();
 
         for(EmprestimoEntity emprestimoEntity : listaEmprestimoEntity) {
+
             listaEmprestimosDTO.add(EmprestimoListaDTO.of(emprestimoEntity));
         }
 
         return listaEmprestimosDTO;
     }
 
-    protected void validaDados(EmprestimoRequestDTO emprestimoRequestDTO){
+    public void emprestarEquipamento(EmprestimoRequestDTO emprestimoRequestDTO) {
+        validaDados(emprestimoRequestDTO);
 
         Optional<ColaboradorEntity> colaboradorEntityOptional = colaboradorRepository.findById(emprestimoRequestDTO.getColaboradorId());
-        if(colaboradorEntityOptional.isEmpty()){
+
+        if(colaboradorEntityOptional.isEmpty()) {
             throw new InvalidOperationException("Colaborador não encontrado.");
         }
 
         Optional<EquipamentoEntity> equipamentoEntityOptional = equipamentoRepository.findById(emprestimoRequestDTO.getEquipamentoId());
-        if(equipamentoEntityOptional.isEmpty()){
+
+        if(equipamentoEntityOptional.isEmpty()) {
             throw new InvalidOperationException("Equipamento não encontrado.");
+        }
+
+        EmprestimoEntity emprestimoEntity = new EmprestimoEntity();
+        emprestimoEntity.setColaborador(colaboradorEntityOptional.get());
+        emprestimoEntity.setEquipamento(equipamentoEntityOptional.get());
+        emprestimoEntity.setDataEmprestimo(LocalDate.now());
+        repository.save(emprestimoEntity);
+    }
+
+    protected void validaDados(EmprestimoRequestDTO emprestimoRequestDTO){
+
+        if(emprestimoRequestDTO.getColaboradorId() == null) {
+            throw new InvalidOperationException("Informe o colaborador.");
+        }
+
+        if(emprestimoRequestDTO.getEquipamentoId() == null) {
+            throw new InvalidOperationException("Informe o equipamento.");
         }
     }
 

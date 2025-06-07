@@ -29,7 +29,6 @@ public class EmprestimoEntity {
     @JoinColumn(name = "equipamento_id", referencedColumnName = "id")
     private EquipamentoEntity equipamento;
 
-    //@NotNull
     @Column(name = "data_emprestimo", nullable = false)
     private LocalDate dataEmprestimo;
 

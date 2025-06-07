@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -36,6 +37,7 @@ public class CadastroEmprestimoController {
 
         try {
             EmprestimoRequestDTO emprestimoRequestDTO = new EmprestimoRequestDTO();
+            emprestimoRequestDTO.setDataEmprestimo(LocalDate.now());
             model.addAttribute("emprestimoRequestDTO", emprestimoRequestDTO);
 
             List<ColaboradorListaDTO> listaColaboradorDTO = serviceColaborador.listarColaborador();
@@ -53,9 +55,9 @@ public class CadastroEmprestimoController {
 
 
     @PostMapping
-    public String adicionarEmprestimo(@ModelAttribute("emprestimoRequestDTO") EmprestimoRequestDTO emprestimoRequestDTO, RedirectAttributes redirectAttributes) {
+    public String emprestarEquipamento(@ModelAttribute("emprestimoRequestDTO") EmprestimoRequestDTO emprestimoRequestDTO, RedirectAttributes redirectAttributes) {
         try {
-            //service.adicionarEmprestimo(emprestimoRequestDTO);
+            serviceEmprestimo.emprestarEquipamento(emprestimoRequestDTO);
             return "redirect:/lista-emprestimo?sucesso";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());

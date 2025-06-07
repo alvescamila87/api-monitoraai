@@ -1,11 +1,14 @@
 package com.senai.monitoraai.dtos.emprestimo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.senai.monitoraai.entities.EmprestimoEntity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -15,8 +18,11 @@ public class EmprestimoListaDTO {
     private Long id;
     private String nomeColaborador;
     private String tipoEquipamento;
+    @DateTimeFormat(pattern ="dd/MM/yyyy")
     private LocalDate dataEmprestimo;
+    @DateTimeFormat(pattern ="dd/MM/yyyy")
     private LocalDate dataDevolucao;
+
     private String observacao;
 
     public static EmprestimoListaDTO of(EmprestimoEntity emprestimoEntity) {
@@ -26,8 +32,17 @@ public class EmprestimoListaDTO {
         emprestimoListaDTO.setTipoEquipamento(emprestimoEntity.getEquipamento().getTipo());
         emprestimoListaDTO.setDataEmprestimo(emprestimoEntity.getDataEmprestimo());
         emprestimoListaDTO.setDataDevolucao(emprestimoEntity.getDataDevolucao());
-        //emprestimoListaDTO.setObservacao(emprestimoEntity.getObservacao());
 
         return emprestimoListaDTO;
+    }
+
+    public String getDataEmprestimoFormatada() {
+        if (dataEmprestimo == null) return "";
+        return dataEmprestimo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
+
+    public String getDataDevolucaoFormatada() {
+        if (dataDevolucao == null) return "";
+        return dataDevolucao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 }
