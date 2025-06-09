@@ -24,7 +24,7 @@ public class EmprestimoEntity {
     @JoinColumn(name = "colaborador_id", referencedColumnName = "id")
     private ColaboradorEntity colaborador;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "equipamento_id", referencedColumnName = "id")
     private EquipamentoEntity equipamento;
 

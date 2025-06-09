@@ -136,7 +136,7 @@ public class EmprestimoService {
         boolean jaEmprestado = repository.existsByEquipamentoIdAndDataDevolucaoIsNull(emprestimoRequestDTO.getEquipamentoId());
 
         if(jaEmprestado) {
-            throw new InvalidOperationException("Equipamento já emprestado. Cadastre um novo equipamento para realizar o empréstimo");
+            throw new InvalidOperationException("Equipamento já emprestado. Cadastre um novo equipamento para realizar o empréstimo.");
         }
     }
 
