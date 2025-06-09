@@ -1,6 +1,7 @@
 package com.senai.monitoraai.controller.devolucao;
 
 import com.senai.monitoraai.dtos.colaborador.ColaboradorListaDTO;
+import com.senai.monitoraai.dtos.emprestimo.DevolucaoDTO;
 import com.senai.monitoraai.dtos.emprestimo.DevolverRequestDTO;
 import com.senai.monitoraai.dtos.emprestimo.EmprestimoDTO;
 import com.senai.monitoraai.dtos.emprestimo.EmprestimoRequestDTO;
@@ -35,7 +36,7 @@ public class DevolverEquipamentoController {
     public String obterDevolucaoDeEmprestimo(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
 
         try {
-            EmprestimoDTO devolverRequestDTO = emprestimoService.obterEmprestimoPorId(id);
+            DevolucaoDTO devolverRequestDTO = emprestimoService.obterDevolucaoPorId(id);
             devolverRequestDTO.setDataDevolucao(LocalDate.now());
             model.addAttribute("devolverRequestDTO", devolverRequestDTO);
 
@@ -59,7 +60,7 @@ public class DevolverEquipamentoController {
             return "redirect:/lista-emprestimo?sucesso_devolucao";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());
-            return "redirect:/devolver-equipamento" + id;
+            return "redirect:/devolver-equipamento/" + id;
         }
     }
 }

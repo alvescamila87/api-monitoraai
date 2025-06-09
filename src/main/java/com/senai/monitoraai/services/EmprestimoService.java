@@ -8,6 +8,7 @@ import com.senai.monitoraai.exceptions.InvalidOperationException;
 import com.senai.monitoraai.repositories.ColaboradorRepository;
 import com.senai.monitoraai.repositories.EmprestimoRepository;
 import com.senai.monitoraai.repositories.EquipamentoRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -92,6 +93,16 @@ public class EmprestimoService {
         return EmprestimoDTO.of(emprestimoEntityOptional.get());
     }
 
+    public DevolucaoDTO obterDevolucaoPorId(Long id) {
+        Optional<EmprestimoEntity> emprestimoEntityOptional = repository.findById(id);
+
+        if(emprestimoEntityOptional.isEmpty()) {
+            throw new InvalidOperationException("Empréstimo não encontrado.");
+        }
+
+        return DevolucaoDTO.of(emprestimoEntityOptional.get());
+    }
+
     public HistoricoDTO obterHistoricoPorId(Long id) {
         Optional<EmprestimoEntity> emprestimoEntityOptional = repository.findById(id);
 
@@ -115,8 +126,8 @@ public class EmprestimoService {
 
     protected void validaDadosDevolucao(DevolverRequestDTO devolverRequestDTO){
 
-        if(devolverRequestDTO.getObservacao() == null) {
-            throw new InvalidOperationException("Informe a observação de devolução.");
+        if(StringUtils.isBlank(devolverRequestDTO.getObservacao()) || devolverRequestDTO.getObservacao().trim().isEmpty()) {
+            throw new InvalidOperationException("Não é permitido detalhes da devolução em branco em branco ou vazio.");
         }
 
     }
