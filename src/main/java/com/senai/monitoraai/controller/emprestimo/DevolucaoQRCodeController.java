@@ -62,13 +62,17 @@ public class DevolucaoQRCodeController {
 
     @PostMapping("/{id}")
     public String devolverPorQRCode(@PathVariable Long id,
-                                     @ModelAttribute("emprestimoRequestDTO") DevolucaoPorQRCodeRequestDTO DevolucaoPorQRCodeRequestDTO,
                                      RedirectAttributes redirectAttributes) {
-        emprestimoService.devolverEquipamentoPorQRCode(id, DevolucaoPorQRCodeRequestDTO);
+        emprestimoService.devolverEquipamentoPorQRCode(id);
         redirectAttributes.addFlashAttribute("mensagem", "Equipamento devolvido com sucesso.");
         return "redirect:/lista-emprestimos";
     }
 
+    /**
+     * Gera imagem para leitura de QRCode por empréstimo de equipamento
+     * @param id:  id de empréstimo
+     * @return: uma imagem em QRCode
+     */
     @GetMapping(value = "/imagem/{id}", produces = MediaType.IMAGE_PNG_VALUE)
     public ResponseEntity<byte[]> gerarQRCode(@PathVariable Long id) {
         try {

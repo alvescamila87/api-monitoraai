@@ -111,26 +111,29 @@ document.querySelectorAll(".delete-colaborador").forEach(function (button) {
 
 //LEITURA DE QRCODE
 function startScanner() {
-        const scannerDiv = document.getElementById("qr-reader");
-        scannerDiv.style.display = "block";
+  const scannerDiv = document.getElementById("qr-reader");
+  scannerDiv.style.display = "block";
 
-        const html5QrCode = new Html5Qrcode("qr-reader");
-        html5QrCode.start(
-            { facingMode: "environment" }, // câmera traseira em celular
-            {
-                fps: 10,
-                qrbox: { width: 250, height: 250 }
-            },
-            qrCodeMessage => {
-                console.log("QR Code lido:", qrCodeMessage);
-                // Ex: qrCodeMessage = "123", então redireciona para devolução
-                window.location.href = `/devolver-equipamento/${qrCodeMessage}`;
-                html5QrCode.stop();
-            },
-            errorMessage => {
-                // Pode ignorar erros de leitura frequentes
-            }
-        ).catch(err => {
-            console.error("Erro ao iniciar scanner:", err);
-        });
-    }
+  const html5QrCode = new Html5Qrcode("qr-reader");
+  html5QrCode
+    .start(
+      { facingMode: "environment" }, // câmera traseira em celular
+      {
+        fps: 10,
+        qrbox: { width: 250, height: 250 },
+      },
+      (qrCodeMessage) => {
+        console.log("QR Code lido:", qrCodeMessage);
+        // Ex: qrCodeMessage = "123", então redireciona para devolução
+        //window.location.href = `/devolver-equipamento/${qrCodeMessage}`;
+        window.location.href = `/devolucao/qrcode/${qrCodeMessage}`;
+        html5QrCode.stop();
+      },
+      (errorMessage) => {
+        // Pode ignorar erros de leitura frequentes
+      }
+    )
+    .catch((err) => {
+      console.error("Erro ao iniciar scanner:", err);
+    });
+}

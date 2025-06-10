@@ -44,7 +44,7 @@ public class EmprestimoService {
 
     public void emprestarEquipamento(EmprestimoRequestDTO emprestimoRequestDTO) {
 
-        validaDuplicidadeEmprestimo(emprestimoRequestDTO);
+        //validaDuplicidadeEmprestimo(emprestimoRequestDTO);
 
         validaDadosEmprestimo(emprestimoRequestDTO);
 
@@ -64,6 +64,7 @@ public class EmprestimoService {
         emprestimoEntity.setColaborador(colaboradorEntityOptional.get());
         emprestimoEntity.setEquipamento(equipamentoEntityOptional.get());
         emprestimoEntity.setDataEmprestimo(LocalDate.now());
+        emprestimoEntity.setDevolvido(false);
         repository.save(emprestimoEntity);
     }
 
@@ -87,7 +88,8 @@ public class EmprestimoService {
         repository.save(emprestimoEntity);
     }
 
-    public void devolverEquipamentoPorQRCode(Long id, DevolucaoPorQRCodeRequestDTO devolucaoPorQRCodeRequestDTO) {
+    //public void devolverEquipamentoPorQRCode(Long id, DevolucaoPorQRCodeRequestDTO devolucaoPorQRCodeRequestDTO) {
+    public void devolverEquipamentoPorQRCode(Long id) {
 
         validaDuplicidadeDevolucao(id);
 
@@ -97,11 +99,11 @@ public class EmprestimoService {
             throw new InvalidOperationException("Empréstimo não encontrado.");
         }
 
-        validaDadosDevolucao(devolucaoPorQRCodeRequestDTO.getObservacao());
+        //validaDadosDevolucao(devolucaoPorQRCodeRequestDTO.getObservacao());
 
         EmprestimoEntity emprestimoEntity = emprestimoEntityOptional.get();
         emprestimoEntity.setDataDevolucao(LocalDate.now());
-        emprestimoEntity.setObservacao(devolucaoPorQRCodeRequestDTO.getObservacao());
+        emprestimoEntity.setObservacao("Devolução via QR Code. Equipamento em condições normais.");
         emprestimoEntity.setDevolvido(true);
 
         repository.save(emprestimoEntity);
@@ -156,16 +158,16 @@ public class EmprestimoService {
 
     }
 
-    protected void validaDuplicidadeEmprestimo(EmprestimoRequestDTO emprestimoRequestDTO) {
-        boolean jaEmprestado = repository.existsByEquipamentoIdAndDataDevolucaoIsNull(emprestimoRequestDTO.getEquipamentoId());
-
-        if(jaEmprestado) {
-            throw new InvalidOperationException("Equipamento já emprestado. Cadastre um novo equipamento para realizar o empréstimo.");
-        }
-    }
+//    protected void validaDuplicidadeEmprestimo(EmprestimoRequestDTO emprestimoRequestDTO) {
+//        boolean jaEmprestado = repository.existsByEquipamentoIdAndDataDevolucaoIsNull(emprestimoRequestDTO.getEquipamentoId());
+//
+//        if(jaEmprestado) {
+//            throw new InvalidOperationException("Equipamento já emprestado. Cadastre um novo equipamento para realizar o empréstimo.");
+//        }
+//    }
 
     protected void validaDuplicidadeDevolucao(Long id) {
-        boolean jaDevolvido = repository.existsByEquipamentoIdAndDataDevolucaoIsNull(id);
+        boolean jaDevolvido = repository.existsByEquipamentoIdAndDataDevolucaoIsNotNull(id);
 
         if(jaDevolvido) {
             throw new InvalidOperationException("Equipamento já devolvido.");

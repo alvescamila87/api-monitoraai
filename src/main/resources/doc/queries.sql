@@ -1,4 +1,15 @@
+drop database apimonitoraai;
+
+create database apimonitoraai;
+
 select * from usuario;
+select * from equipamento;
+select * from colaborador;
+select * from emprestimo;
+
+INSERT INTO usuario (nome, email, senha) VALUES
+('Camila', 'camila@gmail.com', '12345'),
+('João', 'joao@gmail.com', '12345');
 
 INSERT INTO colaborador (id, nome, email, cargo, data_nascimento) VALUES
 (1, 'Moisés', 'moises@obra.com', 'Pedreiro', '1980-03-15'),
@@ -28,15 +39,15 @@ INSERT INTO equipamento (id, tipo, descricao) VALUES
 
 
 
-INSERT INTO emprestimo (id, colaborador_id, equipamento_id, data_emprestimo) VALUES
-(1, 1, 1, '2025-05-01'),
-(2, 2, 2, '2025-05-02'),
-(3, 3, 3, '2025-05-03'),
-(4, 4, 4, '2025-05-04'),
-(5, 5, 5, '2025-05-05'),
-(6, 6, 6, '2025-05-06'),
-(7, 7, 7, '2025-05-07'),
-(8, 8, 8, '2025-05-08'),
-(9, 9, 9, '2025-05-09'),
-(10, 10, 10, '2025-05-10');
+INSERT INTO emprestimo (id, colaborador_id, equipamento_id, data_emprestimo, devolvido) VALUES
+(1, 1, 1, '2025-05-01', false),
+(2, 2, 2, '2025-05-02', false),
+(3, 3, 3, '2025-05-03', false),
+(4, 4, 4, '2025-05-04', false),
+(5, 5, 5, '2025-05-05', false),
+(6, 6, 6, '2025-05-06', false),
+(7, 7, 7, '2025-05-07', false),
+(8, 8, 8, '2025-05-08', false),
+(9, 9, 9, '2025-05-09', false),
+(10, 10, 10, '2025-05-10', false);
 
