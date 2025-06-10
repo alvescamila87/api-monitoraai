@@ -1,10 +1,8 @@
-package com.senai.monitoraai.controller.devolucao;
+package com.senai.monitoraai.controller.emprestimo;
 
 import com.senai.monitoraai.dtos.colaborador.ColaboradorListaDTO;
 import com.senai.monitoraai.dtos.emprestimo.DevolucaoDTO;
 import com.senai.monitoraai.dtos.emprestimo.DevolverRequestDTO;
-import com.senai.monitoraai.dtos.emprestimo.EmprestimoDTO;
-import com.senai.monitoraai.dtos.emprestimo.EmprestimoRequestDTO;
 import com.senai.monitoraai.dtos.equipamento.EquipamentoListaDTO;
 import com.senai.monitoraai.exceptions.InvalidOperationException;
 import com.senai.monitoraai.services.ColaboradorService;

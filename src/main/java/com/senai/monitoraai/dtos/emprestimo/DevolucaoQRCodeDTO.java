@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class HistoricoDTO {
+public class DevolucaoQRCodeDTO {
 
     private Long id;
     private String nomeColaborador;
@@ -24,17 +24,17 @@ public class HistoricoDTO {
     private String observacao;
     private Boolean devolvido;
 
-    public static HistoricoDTO of(EmprestimoEntity emprestimoEntity) {
-        HistoricoDTO historicoDTO = new HistoricoDTO();
-        historicoDTO.setId(emprestimoEntity.getId());
-        historicoDTO.setNomeColaborador(emprestimoEntity.getColaborador().getNome());
-        historicoDTO.setTipoEquipamento(emprestimoEntity.getEquipamento().getTipo());
-        historicoDTO.setDataEmprestimo(emprestimoEntity.getDataEmprestimo());
-        historicoDTO.setDataDevolucao(emprestimoEntity.getDataDevolucao());
-        historicoDTO.setObservacao(emprestimoEntity.getObservacao());
-        historicoDTO.setDevolvido(emprestimoEntity.getDevolvido());
+    public static DevolucaoQRCodeDTO of(EmprestimoEntity emprestimoEntity) {
+        DevolucaoQRCodeDTO devolucaoQRCodeDTO = new DevolucaoQRCodeDTO();
+        devolucaoQRCodeDTO.setId(emprestimoEntity.getId());
+        devolucaoQRCodeDTO.setNomeColaborador(emprestimoEntity.getColaborador().getNome());
+        devolucaoQRCodeDTO.setTipoEquipamento(emprestimoEntity.getEquipamento().getTipo());
+        devolucaoQRCodeDTO.setDataEmprestimo(emprestimoEntity.getDataEmprestimo());
+        devolucaoQRCodeDTO.setDataDevolucao(emprestimoEntity.getDataDevolucao());
+        devolucaoQRCodeDTO.setObservacao(emprestimoEntity.getObservacao());
+        devolucaoQRCodeDTO.setDevolvido(emprestimoEntity.getDevolvido());
 
-        return historicoDTO;
+        return devolucaoQRCodeDTO;
     }
 
     public String getDataEmprestimoFormatada() {
@@ -46,4 +46,5 @@ public class HistoricoDTO {
         if (dataDevolucao == null) return "";
         return dataDevolucao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
+
 }

@@ -13,12 +13,14 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class DevolverRequestDTO {
 
+    private Long id;
     @DateTimeFormat(pattern ="dd/MM/yyyy")
     private LocalDate dataDevolucao;
     private String observacao;
 
     public static DevolverRequestDTO of(EmprestimoEntity emprestimoEntity) {
         DevolverRequestDTO devolverEquipamentoDTO = new DevolverRequestDTO();
+        devolverEquipamentoDTO.setId(emprestimoEntity.getId());
         devolverEquipamentoDTO.setDataDevolucao(emprestimoEntity.getDataDevolucao());
         devolverEquipamentoDTO.setObservacao(emprestimoEntity.getObservacao());
 

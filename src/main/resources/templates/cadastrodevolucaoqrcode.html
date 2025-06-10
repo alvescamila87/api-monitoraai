@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Realizar devolução QR Code</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-light">
+
+<!-- Navbar (opcional) -->
+<div th:insert="~{navbar :: navigation}" class="nav-wrapper"></div>
+
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card shadow w-50">
+    <div class="card-header bg-primary text-white text-center">
+      <h5>Devolver equipamento via QR Code</h5>
+    </div>
+
+    <div class="card-body">
+
+      <!-- Mensagem de sucesso -->
+      <div th:if="${param.sucesso}" class="alert alert-info" role="alert">
+        <span class="mensagem">Equipamento cadastrado/atualizado com sucesso!</span>
+      </div>
+
+      <!-- Mensagem de erro -->
+      <div th:if="${erro}" class="alert alert-danger" role="alert">
+        <span class="mensagem" th:text="${erro}">Erro</span>
+      </div>
+
+      <!-- Formulário -->
+      <form th:action="@{'/devolver-equipamento/' + ${devolverRequestDTO.id}}" method="post" th:object="${devolverRequestDTO}">
+
+        <div class="mb-3">
+          <label for="devolucao_emprestimo_id" class="form-label">ID</label>
+          <input th:field="*{id}" type="number" class="form-control" id="devolucao_emprestimo_id" disabled />
+        </div>
+
+        <div class="mb-3">
+          <label for="devolucao_data_emprestimo" class="form-label">Data de empréstimo</label>
+          <input th:field="*{dataEmprestimo}" type="text" class="form-control" id="devolucao_data_emprestimo" disabled />
+        </div>
+
+        <div class="mb-3">
+          <label for="devolucao_colaborador" class="form-label">Colaborador</label>
+          <input th:field="*{nomeColaborador}" type="text" class="form-control" id="devolucao_colaborador" disabled />
+        </div>
+
+        <div class="mb-3">
+          <label for="devolucao_tipo_equipamento" class="form-label">Equipamento</label>
+          <input th:field="*{tipoEquipamento}" type="text" class="form-control" id="devolucao_tipo_equipamento" disabled />
+        </div>
+
+        <div class="mb-3">
+          <label for="devolucao_data_devolucao" class="form-label">Data de devolução</label>
+          <input th:field="*{dataDevolucao}" type="text" class="form-control" id="devolucao_data_devolucao" disabled />
+        </div>
+
+        <div class="mb-3">
+          <label for="observacao" class="form-label">Detalhes da devolução <span class="text-danger">*</span></label>
+          <textarea th:field="*{observacao}" class="form-control" id="observacao" rows="4" required></textarea>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Confirmar devolução</button>
+          <a th:href="@{/lista-emprestimo}" class="btn btn-secondary ms-2">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+</body>
+</html>

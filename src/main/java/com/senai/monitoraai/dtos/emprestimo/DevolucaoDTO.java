@@ -22,6 +22,7 @@ public class DevolucaoDTO {
     @DateTimeFormat(pattern ="dd/MM/yyyy")
     private LocalDate dataDevolucao;
     private String observacao;
+    private Boolean devolvido;
 
     public static DevolucaoDTO of(EmprestimoEntity emprestimoEntity) {
         DevolucaoDTO devolucaoDTO = new DevolucaoDTO();
@@ -31,6 +32,7 @@ public class DevolucaoDTO {
         devolucaoDTO.setDataEmprestimo(emprestimoEntity.getDataEmprestimo());
         devolucaoDTO.setDataDevolucao(emprestimoEntity.getDataDevolucao());
         devolucaoDTO.setObservacao(emprestimoEntity.getObservacao());
+        devolucaoDTO.setDevolvido(emprestimoEntity.getDevolvido());
 
         return devolucaoDTO;
     }

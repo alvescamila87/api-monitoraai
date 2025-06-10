@@ -36,4 +36,7 @@ public class EmprestimoEntity {
 
     @Column(name = "observacao")
     private String observacao;
+
+    @Column(name = "devolvido", nullable = false)
+    private Boolean devolvido;
 }

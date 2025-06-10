@@ -1,6 +1,5 @@
-package com.senai.monitoraai.controller.historico;
+package com.senai.monitoraai.controller.emprestimo;
 
-import com.senai.monitoraai.dtos.emprestimo.EmprestimoDTO;
 import com.senai.monitoraai.dtos.emprestimo.HistoricoDTO;
 import com.senai.monitoraai.exceptions.InvalidOperationException;
 import com.senai.monitoraai.services.EmprestimoService;

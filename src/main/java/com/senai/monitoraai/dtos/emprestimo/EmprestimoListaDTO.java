@@ -21,8 +21,9 @@ public class EmprestimoListaDTO {
     private LocalDate dataEmprestimo;
     @DateTimeFormat(pattern ="dd/MM/yyyy")
     private LocalDate dataDevolucao;
-
     private String observacao;
+    private Boolean devolvido;
+
 
     public static EmprestimoListaDTO of(EmprestimoEntity emprestimoEntity) {
         EmprestimoListaDTO emprestimoListaDTO = new EmprestimoListaDTO();
@@ -31,6 +32,7 @@ public class EmprestimoListaDTO {
         emprestimoListaDTO.setTipoEquipamento(emprestimoEntity.getEquipamento().getTipo());
         emprestimoListaDTO.setDataEmprestimo(emprestimoEntity.getDataEmprestimo());
         emprestimoListaDTO.setDataDevolucao(emprestimoEntity.getDataDevolucao());
+        emprestimoListaDTO.setDevolvido(emprestimoEntity.getDevolvido());
 
         return emprestimoListaDTO;
     }
