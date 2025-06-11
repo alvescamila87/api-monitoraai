@@ -160,7 +160,7 @@ function startScanner() {
                 .then(response => {
                     if (response.ok) {
                         alert("Equipamento devolvido com sucesso!");
-                        window.location.href = "/lista-emprestimos";
+                        window.location.href = "/lista-emprestimo";
                     } else {
                         alert("Erro ao devolver equipamento.");
                     }
