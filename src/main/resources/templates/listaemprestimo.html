@@ -61,13 +61,22 @@
                         <button type="button"
                                 class="btn btn-outline-dark"
                                 data-bs-toggle="modal"
-                                th:attr="data-bs-target='#qrCodeModal_' + ${emprestimo.id}">
+                                th:attr="data-bs-target='#qrCodeModal_' + ${emprestimo.id}"
+                                th:disabled="${emprestimo.devolvido}">
                             Ver QR Code
                         </button>
-                        </a>  <a th:if="${emprestimo.devolvido == false}"
-                           th:href="@{'/devolver-equipamento/' + ${emprestimo.id}}"
-                           class="btn btn-danger">Devolver
-                        </a>
+                        <form th:action="@{'/devolver-equipamento/' + ${emprestimo.id}}" method="post" style="display: inline;">
+                            <button type="submit"
+                                    class="btn btn-danger"
+                                    th:disabled="${emprestimo.devolvido}">
+                                Devolver
+                            </button>
+                        </form>
+
+                        <!--                        </a>  <a th:if="${emprestimo.devolvido == false}"-->
+<!--                           th:href="@{'/devolver-equipamento/' + ${emprestimo.id}}"-->
+<!--                           class="btn btn-danger">Devolver-->
+<!--                        </a>-->
                     </div>
                 </td>
                 <td th:text="${emprestimo.id}"></td>

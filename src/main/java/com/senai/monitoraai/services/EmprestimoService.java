@@ -153,7 +153,7 @@ public class EmprestimoService {
     protected void validaDadosDevolucao(String observacao){
 
         if(StringUtils.isBlank(observacao) || observacao.trim().isEmpty()) {
-            throw new InvalidOperationException("Não é permitido detalhes da devolução em branco em branco ou vazio.");
+            throw new InvalidOperationException("Não é permitido detalhes da devolução em branco ou vazio.");
         }
 
     }
