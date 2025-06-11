@@ -33,39 +33,44 @@ public class DevolucaoQRCodeController {
     @Autowired
     EmprestimoService emprestimoService;
 
-    @Autowired
-    ColaboradorService colaboradorService;
+//    @Autowired
+//    ColaboradorService colaboradorService;
+//
+//    @Autowired
+//    EquipamentoService equipamentoService;
+//
+//    @GetMapping("/{id}")
+//    public String obterDevolucaoPorQRCode(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
+//
+//        try {
+//            DevolucaoDTO devolverRequestDTO = emprestimoService.obterDevolucaoPorId(id);
+//            devolverRequestDTO.setDataDevolucao(LocalDate.now());
+//            model.addAttribute("devolverRequestDTO", devolverRequestDTO);
+//
+//            List<ColaboradorListaDTO> listaColaboradorDTO = colaboradorService.listarColaborador();
+//            model.addAttribute("listaColaboradorDTO", listaColaboradorDTO);
+//
+//            List<EquipamentoListaDTO> listaEquipamentoDTO = equipamentoService.listarEquipamentos();
+//            model.addAttribute("listaEquipamentoDTO", listaEquipamentoDTO);
+//
+//            return "cadastrodevolucaoqrcode";
+//        } catch (InvalidOperationException exception) {
+//            redirectAttributes.addFlashAttribute("erro", exception.getMessage());
+//            return "redirect:/lista-emprestimo";
+//        }
+//    }
 
-    @Autowired
-    EquipamentoService equipamentoService;
-
-    @GetMapping("/{id}")
-    public String obterDevolucaoPorQRCode(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
-
-        try {
-            DevolucaoDTO devolverRequestDTO = emprestimoService.obterDevolucaoPorId(id);
-            devolverRequestDTO.setDataDevolucao(LocalDate.now());
-            model.addAttribute("devolverRequestDTO", devolverRequestDTO);
-
-            List<ColaboradorListaDTO> listaColaboradorDTO = colaboradorService.listarColaborador();
-            model.addAttribute("listaColaboradorDTO", listaColaboradorDTO);
-
-            List<EquipamentoListaDTO> listaEquipamentoDTO = equipamentoService.listarEquipamentos();
-            model.addAttribute("listaEquipamentoDTO", listaEquipamentoDTO);
-
-            return "cadastrodevolucaoqrcode";
-        } catch (InvalidOperationException exception) {
-            redirectAttributes.addFlashAttribute("erro", exception.getMessage());
-            return "redirect:/lista-emprestimo";
-        }
-    }
-
+    /**
+     * Devolução automática por QRCode, considerando equipamentos de EPI em condições no normais de devolução.
+     * @param id:  id de empréstimo
+     * @return: devolução realizada com sucesso
+     */
     @PostMapping("/{id}")
     public String devolverPorQRCode(@PathVariable Long id,
                                      RedirectAttributes redirectAttributes) {
         emprestimoService.devolverEquipamentoPorQRCode(id);
         redirectAttributes.addFlashAttribute("mensagem", "Equipamento devolvido com sucesso.");
-        return "redirect:/lista-emprestimos";
+        return "redirect:/lista-emprestimo";
     }
 
     /**
@@ -76,7 +81,8 @@ public class DevolucaoQRCodeController {
     @GetMapping(value = "/imagem/{id}", produces = MediaType.IMAGE_PNG_VALUE)
     public ResponseEntity<byte[]> gerarQRCode(@PathVariable Long id) {
         try {
-            String texto = "http://localhost:8080//devolucao/qrcode/" + id;
+            //String texto = "http://localhost:8080//devolucao/qrcode/" + id;
+            String texto = "http://192.168.100.10:8080/devolucao/qrcode/" + id; //ipConfig IPv4 Address
             BitMatrix matrix = new MultiFormatWriter().encode(texto, BarcodeFormat.QR_CODE, 300, 300);
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

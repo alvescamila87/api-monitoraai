@@ -32,7 +32,7 @@
         </a>
 
         <!-- Scanner do QR Code -->
-        <button type="button" class="btn btn-success" onclick="startScanner()">
+        <button type="button" class="btn btn-dark" onclick="startScanner()">
             📷 Devolver por QR Code
         </button>
     </div>
@@ -59,7 +59,7 @@
                     <div class="d-flex justify-content-center gap-2">
                         <a th:href="@{'/visualizar-historico/' + ${emprestimo.id}}" class="btn btn-secondary">Visualizar detalhes</a>
                         <button type="button"
-                                class="btn btn-outline-primary"
+                                class="btn btn-outline-dark"
                                 data-bs-toggle="modal"
                                 th:attr="data-bs-target='#qrCodeModal_' + ${emprestimo.id}">
                             Ver QR Code
@@ -90,7 +90,8 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                         </div>
                         <div class="modal-body text-center">
-                            <img th:src="@{'/devolucao/qrcode/imagem/' + ${emprestimo.id}}" alt="QR Code" class="img-fluid"/>
+<!--                            <img th:src="@{'/devolucao/qrcode/imagem/' + ${emprestimo.id}}" alt="QR Code" class="img-fluid"/>-->
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?data=http://192.168.100.10:8080/devolucao/qrcode/10&size=300x300" alt="QR Code Demo">
                             <p class="mt-3">Escaneie para acessar a devolução.</p>
                         </div>
                     </div>

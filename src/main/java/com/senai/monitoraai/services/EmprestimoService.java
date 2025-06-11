@@ -167,7 +167,8 @@ public class EmprestimoService {
 //    }
 
     protected void validaDuplicidadeDevolucao(Long id) {
-        boolean jaDevolvido = repository.existsByEquipamentoIdAndDataDevolucaoIsNotNull(id);
+        //boolean jaDevolvido = repository.existsByEquipamentoIdAndDataDevolucaoIsNotNull(id);
+        boolean jaDevolvido = repository.findDevolvidoById(id);
 
         if(jaDevolvido) {
             throw new InvalidOperationException("Equipamento já devolvido.");

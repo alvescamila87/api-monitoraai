@@ -110,30 +110,73 @@ document.querySelectorAll(".delete-colaborador").forEach(function (button) {
 });
 
 //LEITURA DE QRCODE
+//function startScanner() {
+//  const scannerDiv = document.getElementById("qr-reader");
+//  scannerDiv.style.display = "block";
+//
+//  const html5QrCode = new Html5Qrcode("qr-reader");
+//  html5QrCode
+//    .start(
+//      { facingMode: "environment" }, // câmera traseira em celular
+//      {
+//        fps: 10,
+//        qrbox: { width: 250, height: 250 },
+//      },
+//      (qrCodeMessage) => {
+//        console.log("QR Code lido:", qrCodeMessage);
+//        // Ex: qrCodeMessage = "123", então redireciona para devolução
+//        //window.location.href = `/devolver-equipamento/${qrCodeMessage}`;
+//        window.location.href = `/devolucao/qrcode/${qrCodeMessage}`;
+//        html5QrCode.stop();
+//      },
+//      (errorMessage) => {
+//        // Pode ignorar erros de leitura frequentes
+//      }
+//    )
+//    .catch((err) => {
+//      console.error("Erro ao iniciar scanner:", err);
+//    });
+//}
 function startScanner() {
-  const scannerDiv = document.getElementById("qr-reader");
-  scannerDiv.style.display = "block";
+    const qrReader = document.getElementById("qr-reader");
+    qrReader.style.display = "block";
 
-  const html5QrCode = new Html5Qrcode("qr-reader");
-  html5QrCode
-    .start(
-      { facingMode: "environment" }, // câmera traseira em celular
-      {
-        fps: 10,
-        qrbox: { width: 250, height: 250 },
-      },
-      (qrCodeMessage) => {
-        console.log("QR Code lido:", qrCodeMessage);
-        // Ex: qrCodeMessage = "123", então redireciona para devolução
-        //window.location.href = `/devolver-equipamento/${qrCodeMessage}`;
-        window.location.href = `/devolucao/qrcode/${qrCodeMessage}`;
-        html5QrCode.stop();
-      },
-      (errorMessage) => {
-        // Pode ignorar erros de leitura frequentes
-      }
-    )
-    .catch((err) => {
-      console.error("Erro ao iniciar scanner:", err);
-    });
+    const html5QrCode = new Html5Qrcode("qr-reader");
+
+    const config = { fps: 10, qrbox: 250 };
+
+    html5QrCode.start(
+        { facingMode: "environment" }, // Câmera traseira
+        config,
+        (decodedText, decodedResult) => {
+            // Verifica se é uma URL do tipo esperada
+            if (decodedText.includes("/devolucao/qrcode/")) {
+                const id = decodedText.split("/devolucao/qrcode/")[1];
+
+                // Faz POST automático para devolver
+                fetch(`/devolucao/qrcode/${id}`, {
+                    method: 'POST'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Equipamento devolvido com sucesso!");
+                        window.location.href = "/lista-emprestimos";
+                    } else {
+                        alert("Erro ao devolver equipamento.");
+                    }
+                })
+                .catch(err => {
+                    alert("Erro na solicitação de devolução.");
+                    console.error(err);
+                });
+
+                html5QrCode.stop();
+            } else {
+                alert("QR Code inválido.");
+            }
+        },
+        (errorMessage) => {
+            // erros de leitura (não precisa tratar todos)
+        }
+    );
 }
