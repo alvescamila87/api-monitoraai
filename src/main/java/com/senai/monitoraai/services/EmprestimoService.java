@@ -78,12 +78,12 @@ public class EmprestimoService {
             throw new InvalidOperationException("Empréstimo não encontrado.");
         }
 
-        validaDadosDevolucao(devolverRequestDTO.getObservacao());
-
         EmprestimoEntity emprestimoEntity = emprestimoEntityOptional.get();
         emprestimoEntity.setDataDevolucao(LocalDate.now());
         emprestimoEntity.setObservacao(devolverRequestDTO.getObservacao());
         emprestimoEntity.setDevolvido(true);
+
+        validaDadosDevolucao(devolverRequestDTO.getObservacao());
 
         repository.save(emprestimoEntity);
     }
@@ -152,7 +152,7 @@ public class EmprestimoService {
 
     protected void validaDadosDevolucao(String observacao){
 
-        if(StringUtils.isBlank(observacao) || observacao.trim().isEmpty()) {
+        if(observacao == null || StringUtils.isBlank(observacao) || observacao.trim().isEmpty()) {
             throw new InvalidOperationException("Não é permitido detalhes da devolução em branco ou vazio.");
         }
 
@@ -168,7 +168,9 @@ public class EmprestimoService {
 
     protected void validaDuplicidadeDevolucao(Long id) {
         //boolean jaDevolvido = repository.existsByEquipamentoIdAndDataDevolucaoIsNotNull(id);
-        boolean jaDevolvido = repository.existsByIdAndDataDevolucaoIsNotNull(id);
+        //boolean jaDevolvido = repository.existsByIdAndDataDevolucaoIsNotNull(id);
+        boolean jaDevolvido = repository.existsByIdAndDevolvidoTrue(id);
+        System.out.println(jaDevolvido);
 
         if(jaDevolvido) {
             throw new InvalidOperationException("Equipamento já devolvido.");

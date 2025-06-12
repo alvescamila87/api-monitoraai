@@ -7,5 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmprestimoRepository extends JpaRepository<EmprestimoEntity, Long> {
 
-    boolean existsByIdAndDataDevolucaoIsNotNull(Long id);
+    //boolean existsByIdAndDataDevolucaoIsNotNull(Long id);
+    //boolean findDevolvidoById(Long id);
+    boolean existsByIdAndDevolvidoTrue(Long id);
 }
