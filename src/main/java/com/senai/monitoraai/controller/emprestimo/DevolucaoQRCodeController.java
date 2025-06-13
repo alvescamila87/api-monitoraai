@@ -23,8 +23,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
 import java.io.ByteArrayOutputStream;
-import java.time.LocalDate;
-import java.util.List;
 
 @Controller
 @RequestMapping("/devolucao/qrcode")
@@ -32,33 +30,6 @@ public class DevolucaoQRCodeController {
 
     @Autowired
     EmprestimoService emprestimoService;
-
-//    @Autowired
-//    ColaboradorService colaboradorService;
-//
-//    @Autowired
-//    EquipamentoService equipamentoService;
-//
-//    @GetMapping("/{id}")
-//    public String obterDevolucaoPorQRCode(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
-//
-//        try {
-//            DevolucaoDTO devolverRequestDTO = emprestimoService.obterDevolucaoPorId(id);
-//            devolverRequestDTO.setDataDevolucao(LocalDate.now());
-//            model.addAttribute("devolverRequestDTO", devolverRequestDTO);
-//
-//            List<ColaboradorListaDTO> listaColaboradorDTO = colaboradorService.listarColaborador();
-//            model.addAttribute("listaColaboradorDTO", listaColaboradorDTO);
-//
-//            List<EquipamentoListaDTO> listaEquipamentoDTO = equipamentoService.listarEquipamentos();
-//            model.addAttribute("listaEquipamentoDTO", listaEquipamentoDTO);
-//
-//            return "cadastrodevolucaoqrcode";
-//        } catch (InvalidOperationException exception) {
-//            redirectAttributes.addFlashAttribute("erro", exception.getMessage());
-//            return "redirect:/lista-emprestimo";
-//        }
-//    }
 
     /**
      * Devolução automática por QRCode, considerando equipamentos de EPI em condições no normais de devolução.

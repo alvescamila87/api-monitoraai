@@ -34,9 +34,9 @@ public class DevolverEquipamentoController {
     public String obterDevolucaoDeEmprestimo(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
 
         try {
-            DevolucaoDTO devolverRequestDTO = emprestimoService.obterDevolucaoPorId(id);
-            devolverRequestDTO.setDataDevolucao(LocalDate.now());
-            model.addAttribute("devolverRequestDTO", devolverRequestDTO);
+            DevolucaoDTO devolucaoRequestDTO = emprestimoService.obterDevolucaoPorId(id);
+            devolucaoRequestDTO.setDataDevolucao(LocalDate.now());
+            model.addAttribute("devolucaoRequestDTO", devolucaoRequestDTO);
 
             List<ColaboradorListaDTO> listaColaboradorDTO = colaboradorService.listarColaborador();
             model.addAttribute("listaColaboradorDTO", listaColaboradorDTO);
@@ -52,7 +52,7 @@ public class DevolverEquipamentoController {
     }
 
     @PostMapping("/{id}")
-    public String devolverEquipamento(@PathVariable Long id, @ModelAttribute("devolverRequestDTO") DevolverRequestDTO devolverRequestDTO, RedirectAttributes redirectAttributes) {
+    public String devolverEquipamento(@PathVariable Long id, @ModelAttribute("devolucaoRequestDTO") DevolverRequestDTO devolverRequestDTO, RedirectAttributes redirectAttributes) {
         try {
             emprestimoService.devolverEquipamento(id, devolverRequestDTO);
             return "redirect:/lista-emprestimo?sucesso_devolucao";

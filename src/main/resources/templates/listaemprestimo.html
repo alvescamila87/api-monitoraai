@@ -65,7 +65,7 @@
                                 th:disabled="${emprestimo.devolvido}">
                             Ver QR Code
                         </button>
-                        <form th:action="@{'/devolver-equipamento/' + ${emprestimo.id}}" method="post" style="display: inline;">
+                        <form th:action="@{'/devolver-equipamento/' + ${emprestimo.id}}" method="get" style="display: inline;">
                             <button type="submit"
                                     class="btn btn-danger"
                                     th:disabled="${emprestimo.devolvido}">

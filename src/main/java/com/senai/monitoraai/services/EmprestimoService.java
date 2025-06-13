@@ -44,8 +44,6 @@ public class EmprestimoService {
 
     public void emprestarEquipamento(EmprestimoRequestDTO emprestimoRequestDTO) {
 
-        //validaDuplicidadeEmprestimo(emprestimoRequestDTO);
-
         validaDadosEmprestimo(emprestimoRequestDTO);
 
         Optional<ColaboradorEntity> colaboradorEntityOptional = colaboradorRepository.findById(emprestimoRequestDTO.getColaboradorId());
@@ -78,17 +76,17 @@ public class EmprestimoService {
             throw new InvalidOperationException("Empréstimo não encontrado.");
         }
 
+        validaDadosDevolucao(devolverRequestDTO.getObservacao());
+
         EmprestimoEntity emprestimoEntity = emprestimoEntityOptional.get();
         emprestimoEntity.setDataDevolucao(LocalDate.now());
         emprestimoEntity.setObservacao(devolverRequestDTO.getObservacao());
         emprestimoEntity.setDevolvido(true);
 
-        validaDadosDevolucao(devolverRequestDTO.getObservacao());
 
         repository.save(emprestimoEntity);
     }
 
-    //public void devolverEquipamentoPorQRCode(Long id, DevolucaoPorQRCodeRequestDTO devolucaoPorQRCodeRequestDTO) {
     public void devolverEquipamentoPorQRCode(Long id) {
 
         validaDuplicidadeDevolucao(id);
@@ -99,8 +97,6 @@ public class EmprestimoService {
             throw new InvalidOperationException("Empréstimo não encontrado.");
         }
 
-        //validaDadosDevolucao(devolucaoPorQRCodeRequestDTO.getObservacao());
-
         EmprestimoEntity emprestimoEntity = emprestimoEntityOptional.get();
         emprestimoEntity.setDataDevolucao(LocalDate.now());
         emprestimoEntity.setObservacao("Devolução via QR Code. Equipamento em condições normais.");
@@ -109,6 +105,7 @@ public class EmprestimoService {
         repository.save(emprestimoEntity);
     }
 
+    @Deprecated
     public EmprestimoDTO obterEmprestimoPorId(Long id) {
         Optional<EmprestimoEntity> emprestimoEntityOptional = repository.findById(id);
 
@@ -152,23 +149,13 @@ public class EmprestimoService {
 
     protected void validaDadosDevolucao(String observacao){
 
-        if(observacao == null || StringUtils.isBlank(observacao) || observacao.trim().isEmpty()) {
+        if(StringUtils.isBlank(observacao) || observacao.trim().isEmpty()) {
             throw new InvalidOperationException("Não é permitido detalhes da devolução em branco ou vazio.");
         }
 
     }
 
-//    protected void validaDuplicidadeEmprestimo(EmprestimoRequestDTO emprestimoRequestDTO) {
-//        boolean jaEmprestado = repository.existsByEquipamentoIdAndDataDevolucaoIsNull(emprestimoRequestDTO.getEquipamentoId());
-//
-//        if(jaEmprestado) {
-//            throw new InvalidOperationException("Equipamento já emprestado. Cadastre um novo equipamento para realizar o empréstimo.");
-//        }
-//    }
-
     protected void validaDuplicidadeDevolucao(Long id) {
-        //boolean jaDevolvido = repository.existsByEquipamentoIdAndDataDevolucaoIsNotNull(id);
-        //boolean jaDevolvido = repository.existsByIdAndDataDevolucaoIsNotNull(id);
         boolean jaDevolvido = repository.existsByIdAndDevolvidoTrue(id);
         System.out.println(jaDevolvido);
 
