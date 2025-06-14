@@ -21,11 +21,9 @@ public class CadastroUsuarioController {
 
     @GetMapping
     public String obterUsuario(Model model, RedirectAttributes redirectAttributes) {
-
         try {
             UsuarioRequestDTO usuarioRequestDTO = new UsuarioRequestDTO();
             model.addAttribute("usuarioRequestDTO", usuarioRequestDTO);
-
             return "cadastrousuario";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());
@@ -33,10 +31,8 @@ public class CadastroUsuarioController {
         }
     }
 
-
     @PostMapping
     public String adicionarUsuario(@ModelAttribute("usuarioRequestDTO") UsuarioRequestDTO usuarioRequestDTO, RedirectAttributes redirectAttributes) {
-
         try {
             service.adicionarUsuario(usuarioRequestDTO);
             return "redirect:/lista-usuario?sucesso";
@@ -44,7 +40,5 @@ public class CadastroUsuarioController {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());
             return "redirect:/cadastro-usuario";
         }
-
     }
-
 }

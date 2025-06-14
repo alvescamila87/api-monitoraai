@@ -17,12 +17,10 @@ public class VisualizarCadastroEquipamentoController {
     EquipamentoService service;
 
     @GetMapping("/{id}")
-    public String obterEquipamento(@PathVariable Long id, Model model, EquipamentoDTO equipamentoDTO, RedirectAttributes redirectAttributes) {
-
+    public String obterEquipamento(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
         try {
             EquipamentoDTO visualizarEquipamentoDTO = service.obterEquipamentoPorId(id);
             model.addAttribute("visualizarEquipamentoDTO", visualizarEquipamentoDTO);
-
             return "visualizarcadastroequipamento";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());

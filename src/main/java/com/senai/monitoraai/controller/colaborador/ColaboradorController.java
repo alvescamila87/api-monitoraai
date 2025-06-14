@@ -18,7 +18,6 @@ public class ColaboradorController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarColaborador(@PathVariable Long id) {
-
         try{
             service.deletarColaborador(id);
             return ResponseEntity.ok().build();

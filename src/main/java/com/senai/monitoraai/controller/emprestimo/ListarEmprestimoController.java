@@ -19,7 +19,6 @@ public class ListarEmprestimoController {
 
     @GetMapping
     public String obterListaEmprestimo(Model model) {
-
         List<EmprestimoListaDTO> emprestimoListaDTO = service.listaEmprestimo();
         model.addAttribute("emprestimoListaDTO", emprestimoListaDTO);
 

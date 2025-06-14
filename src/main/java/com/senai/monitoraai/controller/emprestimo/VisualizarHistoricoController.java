@@ -20,11 +20,9 @@ public class VisualizarHistoricoController {
 
     @GetMapping("/{id}")
     public String obterHistoricoDoItem(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
-
         try {
             HistoricoDTO visualizarHistoricoDTO = service.obterHistoricoPorId(id);
             model.addAttribute("visualizarHistoricoDTO", visualizarHistoricoDTO);
-
             return "visualizarhistorico";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());
