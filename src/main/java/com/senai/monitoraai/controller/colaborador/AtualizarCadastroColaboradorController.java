@@ -34,7 +34,7 @@ public class AtualizarCadastroColaboradorController {
     public String atualizarEquipamento(@PathVariable Long id, @ModelAttribute("atualizarColaboradorDTO") ColaboradorRequestDTO colaboradorRequestDTO, RedirectAttributes redirectAttributes) {
         try {
             service.atualizarColaborador(id, colaboradorRequestDTO);
-            return "redirect:/lista-colaborador?sucesso";
+            return "redirect:/lista-colaborador?sucesso_atualizacao";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());
             return "redirect:/atualizar-colaborador/" + id;

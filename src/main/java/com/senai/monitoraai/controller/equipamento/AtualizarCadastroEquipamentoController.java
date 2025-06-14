@@ -33,7 +33,7 @@ public class AtualizarCadastroEquipamentoController {
     public String atualizarEquipamento(@PathVariable Long id, @ModelAttribute("atualizarEquipamentoDTO") EquipamentoRequestDTO equipamentoRequestDTO, RedirectAttributes redirectAttributes) {
         try {
             service.atualizarEquipamento(id, equipamentoRequestDTO);
-            return "redirect:/lista-equipamento?sucesso";
+            return "redirect:/lista-equipamento?sucesso_atualizacao";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());
             return "redirect:/atualizar-equipamento/" + id;

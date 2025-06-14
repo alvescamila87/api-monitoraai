@@ -33,7 +33,7 @@ public class AtualizarCadastroUsuarioController {
     public String atualizarUsuario(@PathVariable Long id, @ModelAttribute("atualizarUsuarioDTO")UsuarioRequestDTO usuarioRequestDTO, RedirectAttributes redirectAttributes) {
         try {
             service.atualizarUsuario(id, usuarioRequestDTO);
-            return "redirect:/lista-usuario?sucesso";
+            return "redirect:/lista-usuario?sucesso_atualizacao";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());
             return "redirect:/atualizar-usuario/" + id;
