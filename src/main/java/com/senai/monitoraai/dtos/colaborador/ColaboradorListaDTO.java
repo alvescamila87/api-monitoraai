@@ -37,5 +37,4 @@ public class ColaboradorListaDTO {
         if (dataNascimento == null) return "";
         return dataNascimento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
-
 }

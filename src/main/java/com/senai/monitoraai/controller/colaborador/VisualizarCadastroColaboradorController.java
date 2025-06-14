@@ -19,8 +19,7 @@ public class VisualizarCadastroColaboradorController {
     ColaboradorService service;
 
     @GetMapping("/{id}")
-    public String obterColaborador(@PathVariable Long id, Model model, ColaboradorDTO colaboradorDTO, RedirectAttributes redirectAttributes) {
-
+    public String obterColaborador(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
         try {
             ColaboradorDTO visualizarColaboradorDTO = service.obterColaboradorPorID(id);
             model.addAttribute("visualizarColaboradorDTO", visualizarColaboradorDTO);

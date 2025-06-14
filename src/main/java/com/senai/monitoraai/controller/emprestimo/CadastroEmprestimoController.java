@@ -34,7 +34,6 @@ public class CadastroEmprestimoController {
 
     @GetMapping
     public String obterEmprestimo(Model model, RedirectAttributes redirectAttributes) {
-
         try {
             EmprestimoRequestDTO emprestimoRequestDTO = new EmprestimoRequestDTO();
             emprestimoRequestDTO.setDataEmprestimo(LocalDate.now());

@@ -19,11 +19,9 @@ public class AtualizarCadastroEquipamentoController {
 
     @GetMapping("/{id}")
     public String obterEquipamento(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
-
         try {
             EquipamentoDTO atualizarEquipamentoDTO = service.obterEquipamentoPorId(id);
             model.addAttribute("atualizarEquipamentoDTO", atualizarEquipamentoDTO);
-
             return "atualizarcadastroequipamento";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());
@@ -33,7 +31,6 @@ public class AtualizarCadastroEquipamentoController {
 
     @PostMapping("/{id}")
     public String atualizarEquipamento(@PathVariable Long id, @ModelAttribute("atualizarEquipamentoDTO") EquipamentoRequestDTO equipamentoRequestDTO, RedirectAttributes redirectAttributes) {
-
         try {
             service.atualizarEquipamento(id, equipamentoRequestDTO);
             return "redirect:/lista-equipamento?sucesso";

@@ -1,11 +1,7 @@
 package com.senai.monitoraai.controller.colaborador;
 
-import com.senai.monitoraai.dtos.colaborador.ColaboradorDTO;
 import com.senai.monitoraai.dtos.colaborador.ColaboradorListaDTO;
-import com.senai.monitoraai.dtos.usuario.UsuarioSessaoDTO;
 import com.senai.monitoraai.services.ColaboradorService;
-import com.senai.monitoraai.sessao.ControleSessao;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,13 +18,7 @@ public class ListarColaboradorController {
     ColaboradorService service;
 
     @GetMapping
-    public String obterListaColaborador(Model model, HttpServletRequest request){
-        UsuarioSessaoDTO usuarioSessaoDTO = ControleSessao.obter(request);
-
-        if (usuarioSessaoDTO.getId() == 0){
-            return "redirect:/login-usuario";
-        }
-
+    public String obterListaColaborador(Model model){
         List<ColaboradorListaDTO> colaboradorListaDTO = service.listarColaborador();
         model.addAttribute("colaboradorListaDTO", colaboradorListaDTO);
         return "listacolaborador";

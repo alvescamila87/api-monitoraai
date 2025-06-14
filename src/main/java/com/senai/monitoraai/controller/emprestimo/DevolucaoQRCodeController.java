@@ -38,7 +38,7 @@ public class DevolucaoQRCodeController {
      */
     @PostMapping("/{id}")
     public String devolverPorQRCode(@PathVariable Long id,
-                                     RedirectAttributes redirectAttributes) throws Exception, RuntimeException{
+                                     RedirectAttributes redirectAttributes) throws Exception, RuntimeException {
         try {
             emprestimoService.devolverEquipamentoPorQRCode(id);
             redirectAttributes.addFlashAttribute("mensagem", "Equipamento devolvido com sucesso.");
@@ -48,10 +48,8 @@ public class DevolucaoQRCodeController {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());
             return "redirect:/lista-emprestimo";
         } catch (RuntimeException exception) {
-
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());
             return "redirect:/lista-emprestimo";
-
         }
     }
 

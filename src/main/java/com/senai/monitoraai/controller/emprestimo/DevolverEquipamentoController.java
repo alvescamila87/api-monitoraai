@@ -32,7 +32,6 @@ public class DevolverEquipamentoController {
 
     @GetMapping("/{id}")
     public String obterDevolucaoDeEmprestimo(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
-
         try {
             DevolucaoDTO devolucaoRequestDTO = emprestimoService.obterDevolucaoPorId(id);
             devolucaoRequestDTO.setDataDevolucao(LocalDate.now());

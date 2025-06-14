@@ -21,7 +21,6 @@ public class CadastroEquipamentoController {
 
     @GetMapping
     public String obterEquipamento(Model model, RedirectAttributes redirectAttributes) {
-
         try {
             EquipamentoRequestDTO equipamentoRequestDTO = new EquipamentoRequestDTO();
             model.addAttribute("equipamentoRequestDTO", equipamentoRequestDTO);
@@ -32,7 +31,6 @@ public class CadastroEquipamentoController {
             return "redirect:/lista-equipamento";
         }
     }
-
 
     @PostMapping
     public String adicionarEquipamento(@ModelAttribute("equipamentoRequestDTO") EquipamentoRequestDTO equipamentoRequestDTO, RedirectAttributes redirectAttributes) {

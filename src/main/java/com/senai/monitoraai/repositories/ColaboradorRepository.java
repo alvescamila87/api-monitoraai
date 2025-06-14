@@ -8,5 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface ColaboradorRepository extends JpaRepository<ColaboradorEntity, Long> {
+
     Optional<ColaboradorEntity> findByEmail(String email);
 }

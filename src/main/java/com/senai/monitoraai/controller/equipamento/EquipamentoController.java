@@ -17,7 +17,6 @@ public class EquipamentoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarEquipamento(@PathVariable Long id) {
-
         boolean resultado = service.deletarEquipamento(id);
 
         if(resultado) {
