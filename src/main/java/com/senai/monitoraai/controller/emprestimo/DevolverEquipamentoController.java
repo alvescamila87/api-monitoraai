@@ -51,7 +51,11 @@ public class DevolverEquipamentoController {
     }
 
     @PostMapping("/{id}")
-    public String devolverEquipamento(@PathVariable Long id, @ModelAttribute("devolucaoRequestDTO") DevolverRequestDTO devolverRequestDTO, RedirectAttributes redirectAttributes) {
+    public String devolverEquipamento(
+            @PathVariable Long id,
+            @ModelAttribute("devolucaoRequestDTO") DevolverRequestDTO devolverRequestDTO,
+            RedirectAttributes redirectAttributes
+    ) {
         try {
             emprestimoService.devolverEquipamento(id, devolverRequestDTO);
             return "redirect:/lista-emprestimo?sucesso_devolucao";

@@ -29,7 +29,6 @@ public class CadastroColaboradorController {
 
     @PostMapping
     public String cadastroColaborador(
-            @Valid
             @ModelAttribute("colaboradorRequestDTO") ColaboradorRequestDTO colaboradorRequestDTO,
             RedirectAttributes redirectAttributes
     ) {

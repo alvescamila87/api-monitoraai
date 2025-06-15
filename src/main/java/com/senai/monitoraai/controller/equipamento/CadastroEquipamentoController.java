@@ -33,7 +33,10 @@ public class CadastroEquipamentoController {
     }
 
     @PostMapping
-    public String adicionarEquipamento(@ModelAttribute("equipamentoRequestDTO") EquipamentoRequestDTO equipamentoRequestDTO, RedirectAttributes redirectAttributes) {
+    public String adicionarEquipamento(
+            @ModelAttribute("equipamentoRequestDTO") EquipamentoRequestDTO equipamentoRequestDTO,
+            RedirectAttributes redirectAttributes
+    ) {
         try {
             service.adicionarEquipamento(equipamentoRequestDTO);
             return "redirect:/lista-equipamento?sucesso";

@@ -17,14 +17,14 @@ public class ColaboradorRequestDTO {
 
     private Long id;
 
-    @NotBlank(message = "Nome é obrigatório.")
+    @NotBlank
     private String nome;
 
-    @NotBlank(message = "Email é obrigatório.")
-    @Email(message = "Email inválido.")
+    @NotBlank
+    @Email
     private String email;
 
-    @NotBlank(message = "Cargo é obrigatório.")
+    @NotBlank
     private String cargo;
 
     @DateTimeFormat(pattern ="dd/MM/yyyy")

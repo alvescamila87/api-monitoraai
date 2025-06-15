@@ -30,7 +30,11 @@ public class AtualizarCadastroUsuarioController {
     }
 
     @PostMapping("/{id}")
-    public String atualizarUsuario(@PathVariable Long id, @ModelAttribute("atualizarUsuarioDTO")UsuarioRequestDTO usuarioRequestDTO, RedirectAttributes redirectAttributes) {
+    public String atualizarUsuario(
+            @PathVariable Long id,
+            @ModelAttribute("atualizarUsuarioDTO")UsuarioRequestDTO usuarioRequestDTO,
+            RedirectAttributes redirectAttributes
+    ) {
         try {
             service.atualizarUsuario(id, usuarioRequestDTO);
             return "redirect:/lista-usuario?sucesso_atualizacao";

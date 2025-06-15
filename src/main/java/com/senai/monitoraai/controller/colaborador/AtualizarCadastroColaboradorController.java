@@ -31,7 +31,11 @@ public class AtualizarCadastroColaboradorController {
     }
 
     @PostMapping("/{id}")
-    public String atualizarEquipamento(@PathVariable Long id, @ModelAttribute("atualizarColaboradorDTO") ColaboradorRequestDTO colaboradorRequestDTO, RedirectAttributes redirectAttributes) {
+    public String atualizarEquipamento(
+            @PathVariable Long id,
+            @ModelAttribute("atualizarColaboradorDTO") ColaboradorRequestDTO colaboradorRequestDTO,
+            RedirectAttributes redirectAttributes
+    ) {
         try {
             service.atualizarColaborador(id, colaboradorRequestDTO);
             return "redirect:/lista-colaborador?sucesso_atualizacao";

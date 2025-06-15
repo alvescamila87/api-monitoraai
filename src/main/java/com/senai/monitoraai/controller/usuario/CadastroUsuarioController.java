@@ -32,7 +32,10 @@ public class CadastroUsuarioController {
     }
 
     @PostMapping
-    public String adicionarUsuario(@ModelAttribute("usuarioRequestDTO") UsuarioRequestDTO usuarioRequestDTO, RedirectAttributes redirectAttributes) {
+    public String adicionarUsuario(
+            @ModelAttribute("usuarioRequestDTO") UsuarioRequestDTO usuarioRequestDTO,
+            RedirectAttributes redirectAttributes
+    ) {
         try {
             service.adicionarUsuario(usuarioRequestDTO);
             return "redirect:/lista-usuario?sucesso";

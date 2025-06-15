@@ -54,7 +54,10 @@ public class CadastroEmprestimoController {
 
 
     @PostMapping
-    public String emprestarEquipamento(@ModelAttribute("emprestimoRequestDTO") EmprestimoRequestDTO emprestimoRequestDTO, RedirectAttributes redirectAttributes) {
+    public String emprestarEquipamento(
+            @ModelAttribute("emprestimoRequestDTO") EmprestimoRequestDTO emprestimoRequestDTO,
+            RedirectAttributes redirectAttributes
+    ) {
         try {
             emprestimoService.emprestarEquipamento(emprestimoRequestDTO);
             return "redirect:/lista-emprestimo?sucesso_emprestimo";

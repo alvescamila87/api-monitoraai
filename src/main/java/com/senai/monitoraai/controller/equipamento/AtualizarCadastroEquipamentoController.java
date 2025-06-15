@@ -30,7 +30,11 @@ public class AtualizarCadastroEquipamentoController {
     }
 
     @PostMapping("/{id}")
-    public String atualizarEquipamento(@PathVariable Long id, @ModelAttribute("atualizarEquipamentoDTO") EquipamentoRequestDTO equipamentoRequestDTO, RedirectAttributes redirectAttributes) {
+    public String atualizarEquipamento(
+            @PathVariable Long id,
+            @ModelAttribute("atualizarEquipamentoDTO") EquipamentoRequestDTO equipamentoRequestDTO,
+            RedirectAttributes redirectAttributes
+    ) {
         try {
             service.atualizarEquipamento(id, equipamentoRequestDTO);
             return "redirect:/lista-equipamento?sucesso_atualizacao";
