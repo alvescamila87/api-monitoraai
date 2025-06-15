@@ -99,12 +99,15 @@ public class ColaboradorService {
         if(colaboradorRequestDTO.getDataNascimento() == null){
             throw new InvalidOperationException("A data de nascimento não pode ser vazia.");
         }
+
         if(colaboradorRequestDTO.getDataNascimento().isAfter(hoje)){
             throw new InvalidOperationException("A data de nascimento não pode ser no futuro.");
         }
+
         if(colaboradorRequestDTO.getDataNascimento().isBefore(dataLimiteMinima)){
             throw new InvalidOperationException("A data de nascimento não pode superior a 120 anos.");
         }
+
         if(StringUtils.isBlank(colaboradorRequestDTO.getNome()) || colaboradorRequestDTO.getNome().trim().isEmpty()){
             throw new InvalidOperationException("O nome não pode estar em branco ou vazio.");
         }

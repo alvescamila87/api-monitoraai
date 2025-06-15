@@ -3,6 +3,7 @@ package com.senai.monitoraai.controller.colaborador;
 import com.senai.monitoraai.dtos.colaborador.ColaboradorRequestDTO;
 import com.senai.monitoraai.exceptions.InvalidOperationException;
 import com.senai.monitoraai.services.ColaboradorService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +28,11 @@ public class CadastroColaboradorController {
     }
 
     @PostMapping
-    public String cadastroColaborador(@ModelAttribute("colaboradorRequestDTO") ColaboradorRequestDTO colaboradorRequestDTO, RedirectAttributes redirectAttributes) {
+    public String cadastroColaborador(
+            @Valid
+            @ModelAttribute("colaboradorRequestDTO") ColaboradorRequestDTO colaboradorRequestDTO,
+            RedirectAttributes redirectAttributes
+    ) {
         try {
             service.adicionarColaborador(colaboradorRequestDTO);
             return "redirect:/lista-colaborador?sucesso";

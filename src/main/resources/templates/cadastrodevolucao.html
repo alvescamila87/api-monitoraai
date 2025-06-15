@@ -14,14 +14,10 @@
 
 <div class="container mt-5 d-flex justify-content-center">
   <div class="card shadow w-50">
-    <div class="card-header bg-primary text-white text-center">
+    <div class="card-header text-white text-center" style="background-color: #FF8500;">
       <h5>Devolver equipamento</h5>
     </div>
     <div class="card-body">
-
-      <div th:if="${param.sucesso}" class="alert alert-info" role="alert">
-        <span class="mensagem">Equipamento cadastrado/atualizado com sucesso!</span>
-      </div>
 
       <div th:if="${erro}" class="alert alert-danger" role="alert">
         <span class="mensagem" th:text="${erro}">Erro</span>

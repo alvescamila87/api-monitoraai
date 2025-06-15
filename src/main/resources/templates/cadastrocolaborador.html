@@ -41,8 +41,8 @@
         </div>
 
         <div class="mb-3">
-        <label for="colaborador_data_nascimento" class="form-label">Data de Nascimento</label>
-        <input th:field="*{dataNascimento}" type="text" class="form-control" id="colaborador_data_nascimento" name="colaborador_data_nascimento" placeholder="01/01/1999" required />
+          <label for="colaborador_data_nascimento" class="form-label">Data de Nascimento</label>
+          <input th:field="*{dataNascimento}" type="date" class="form-control" id="colaborador_data_nascimento" name="colaborador_data_nascimento" required />
         </div>
 
         <div class="text-center mt-4">
@@ -55,6 +55,8 @@
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/jquery.inputmask.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

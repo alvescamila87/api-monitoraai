@@ -180,3 +180,8 @@ function startScanner() {
         }
     );
 }
+
+//VALIDAÇÃO DE DATA NASCIMENTO - COLABORADOR
+$(document).ready(function () {
+    $('#colaborador_data_nascimento').inputmask('99/99/9999');
+  });

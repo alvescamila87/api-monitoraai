@@ -22,18 +22,21 @@
   <div class="row justify-content-center">
     <div class="col-md-4">
       <div class="card shadow-lg mt-5">
-        <div class="card-body">
-          <h3 class="text-center mb-4">Login</h3>
+        <div class="card-body text-center">
 
+          <img th:src="@{/logo/logo-monitoraAi.png}" alt="MonitoraAi Logo" height="250" width="250"
+               class="d-block mx-auto mb-5"/>
+
+          <h3 class="mb-4">Login</h3>
 
           <form method="post" th:action="@{/login}">
-            <div class="mb-3">
+            <div class="mb-3 text-start">
               <label for="username" class="form-label">E-mail</label>
               <input type="email" class="form-control" id="username" name="username"
                      placeholder="seu_email@gmail.com" required />
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 text-start">
               <label for="password" class="form-label">Senha</label>
               <input type="password" class="form-control" id="password" name="password"
                      placeholder="Informe sua senha" required />

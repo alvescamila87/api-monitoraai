@@ -83,17 +83,6 @@ public class UsuarioService {
         repository.delete(usuarioEntityOptional.get());
     }
 
-//    public UsuarioSessaoDTO autenticarUsuario(UsuarioAuthDTO usuarioAuthDTO){
-//        UsuarioSessaoDTO usuarioSessaoDTO = new UsuarioSessaoDTO();
-//        Optional<UsuarioEntity> usuarioEntityOptional = repository.findByEmail(usuarioAuthDTO.getEmail());
-//
-//        if(usuarioEntityOptional.isPresent() && usuarioEntityOptional.get().getSenha().equals(usuarioAuthDTO.getSenha())){
-//            usuarioSessaoDTO.setId(usuarioEntityOptional.get().getId());
-//            usuarioSessaoDTO.setNome(usuarioEntityOptional.get().getNome());
-//        }
-//
-//        return usuarioSessaoDTO;
-//    }
 
     protected void validaDuplicidadeEmail(String email) {
         Optional<UsuarioEntity> usuarioEntity = repository.findByEmail(email);
@@ -101,7 +90,6 @@ public class UsuarioService {
         if(usuarioEntity.isPresent()) {
             throw new InvalidOperationException("E-mail já cadastrado! Tente outro...");
         }
-
     }
 
     protected void validarDados(UsuarioRequestDTO usuarioRequestDTO) {
