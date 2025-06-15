@@ -21,7 +21,6 @@ public class ListarEquipamentoController {
     public String obterListaEquipamento(Model model) {
         List<EquipamentoListaDTO> equipamentoListaDTO = service.listarEquipamentos();
         model.addAttribute("equipamentoListaDTO", equipamentoListaDTO);
-
         return "listaequipamento";
     }
 }

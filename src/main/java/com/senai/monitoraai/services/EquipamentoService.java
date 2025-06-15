@@ -57,7 +57,7 @@ public class EquipamentoService {
         repository.save(equipamentoEntity);
     }
 
-    public boolean deletarEquipamento(Long id) {
+    public void deletarEquipamento(Long id) {
         Optional<EquipamentoEntity> equipamentoEntityOptional = repository.findById(id);
 
         if(equipamentoEntityOptional.isEmpty()) {
@@ -65,7 +65,6 @@ public class EquipamentoService {
         }
 
         repository.delete(equipamentoEntityOptional.get());
-        return true;
     }
 
     public EquipamentoDTO obterEquipamentoPorId(Long id) {

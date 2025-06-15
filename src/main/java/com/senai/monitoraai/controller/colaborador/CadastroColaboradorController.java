@@ -21,10 +21,16 @@ public class CadastroColaboradorController {
     ColaboradorService service;
 
     @GetMapping
-    public String obterCadastro(Model model){
-        ColaboradorRequestDTO colaboradorRequestDTO = new ColaboradorRequestDTO();
-        model.addAttribute("colaboradorRequestDTO", colaboradorRequestDTO);
-        return "cadastrocolaborador";
+    public String obterCadastro(Model model, RedirectAttributes redirectAttributes){
+        try {
+            ColaboradorRequestDTO colaboradorRequestDTO = new ColaboradorRequestDTO();
+            model.addAttribute("colaboradorRequestDTO", colaboradorRequestDTO);
+            return "cadastrocolaborador";
+        } catch (InvalidOperationException exception){
+            redirectAttributes.addFlashAttribute("erro", exception.getMessage());
+            return "redirect:/lista-colaborador";
+        }
+
     }
 
     @PostMapping

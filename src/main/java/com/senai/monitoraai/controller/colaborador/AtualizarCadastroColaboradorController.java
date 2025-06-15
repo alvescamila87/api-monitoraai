@@ -22,7 +22,6 @@ public class AtualizarCadastroColaboradorController {
         try {
             ColaboradorDTO atualizarColaboradorDTO = service.obterColaboradorPorID(id);
             model.addAttribute("atualizarColaboradorDTO", atualizarColaboradorDTO);
-
             return "atualizarcadastrocolaborador";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());

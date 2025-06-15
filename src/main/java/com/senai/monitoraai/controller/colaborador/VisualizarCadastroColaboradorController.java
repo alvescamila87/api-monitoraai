@@ -23,7 +23,6 @@ public class VisualizarCadastroColaboradorController {
         try {
             ColaboradorDTO visualizarColaboradorDTO = service.obterColaboradorPorID(id);
             model.addAttribute("visualizarColaboradorDTO", visualizarColaboradorDTO);
-
             return "visualizarcadastrocolaborador";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());

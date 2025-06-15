@@ -44,7 +44,6 @@ public class CadastroEmprestimoController {
 
             List<EquipamentoListaDTO> listaEquipamentoDTO = equipamentoService.listarEquipamentos();
             model.addAttribute("listaEquipamentoDTO", listaEquipamentoDTO);
-
             return "cadastroemprestimo";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());

@@ -24,7 +24,6 @@ public class CadastroEquipamentoController {
         try {
             EquipamentoRequestDTO equipamentoRequestDTO = new EquipamentoRequestDTO();
             model.addAttribute("equipamentoRequestDTO", equipamentoRequestDTO);
-
             return "cadastroequipamento";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());

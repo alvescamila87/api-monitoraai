@@ -23,7 +23,6 @@ public class VisualizarCadastroUsuarioController {
         try {
             UsuarioDTO visualizarUsuarioDTO = service.obterUsuarioPorId(id);
             model.addAttribute("visualizarUsuarioDTO", visualizarUsuarioDTO);
-
             return "visualizarcadastrousuario";
         } catch (InvalidOperationException exception) {
             redirectAttributes.addFlashAttribute("erro", exception.getMessage());

@@ -21,7 +21,6 @@ public class ListarEmprestimoController {
     public String obterListaEmprestimo(Model model) {
         List<EmprestimoListaDTO> emprestimoListaDTO = service.listaEmprestimo();
         model.addAttribute("emprestimoListaDTO", emprestimoListaDTO);
-
         return "listaemprestimo";
     }
 
