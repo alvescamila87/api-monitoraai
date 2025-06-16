@@ -88,55 +88,53 @@ src
 
 ## 📡 Endpoints da API
 
-### 🔐 Usuário (`/usuarios`)
+### 🔐 Usuário (`/usuario`)
 
-- `GET /usuarios` – Listar todos
-- `POST /usuarios` – Criar novo
-- `PUT /usuarios/{id}` – Atualizar existente
-- `DELETE /usuarios/{id}` – Remover
+- `GET /usuario` – Listar todos
+- `POST /usuario` – Criar novo
+- `PUT /usuario/{id}` – Atualizar existente
+- `DELETE /usuario/{id}` – Remover
 
-### 👷 Colaborador (`/colaboradores`)
+### 👷 Colaborador (`/colaborador`)
 
-- `GET /colaboradores`
-- `POST /colaboradores`
-- `PUT /colaboradores/{id}`
-- `DELETE /colaboradores/{id}`
+- `GET /colaborador` - Listar todos
+- `POST /colaborador` - Criar novo
+- `PUT /colaborador/{id}` - Atualizar existente
+- `DELETE /colaborador/{id}` - Remover
 
-### 🦺 Equipamento (`/equipamentos`)
+### 🦺 Equipamento (`/equipamento`)
 
-- `GET /equipamentos`
-- `POST /equipamentos`
-- `PUT /equipamentos/{id}`
-- `DELETE /equipamentos/{id}`
+- `GET /equipamento` - Listar todos
+- `POST /equipamento` - Criar novo
+- `PUT /equipamento/{id}` - Atualizar existente
+- `DELETE /equipamento/{id}` - Remover
 
-### 📦 Empréstimo (`/emprestimos`)
+### 📦 Empréstimo (`/emprestimo`)
 
-- `GET /emprestimos` – Visualizar
-- `POST /emprestimos` – Emprestar equipamento
-- `POST /emprestimos/devolucao` – Devolver equipamento
-- `POST /emprestimos/devolucao-qrcode` – Devolução via QR Code
+- `GET /emprestimo` – Visualizar
+- `POST /emprestimo` – Emprestar equipamento
+- `POST /emprestimo/devolucao` – Devolver equipamento
+- `POST /emprestimo/devolucao-qrcode` – Devolução via QR Code
 
 ## 📋 Kanban do Projeto
 
 > Link para o quadro no GitHub Projects:  
 > [🔗 Acessar Kanban](https://github.com/users/alvescamila87/projects/5/views/1)
-> ![alt text](image-1.png)
+> ![kanban](image-1.png)
 
 ## 🖼️ Imagens da Aplicação
 
-> Inclua aqui imagens como:
-
 - Tela de login
+![Login](image-2.png)
+
 - Cadastro de equipamentos
+![Cadastro Equipamento](image-3.png)
+
 - Tela de empréstimos
+![Lista Emprestimo](image-4.png)
+
 - Leitura de QR Code
-
-Exemplo:
-
-```markdown
-![Login](imagens/login.png)
-![Cadastro Equipamento](imagens/cadastro-equipamento.png)
-```
+![Qr Code](image-5.png)
 
 ## 👥 Autores
 
