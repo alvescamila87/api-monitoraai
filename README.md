@@ -1,11 +1,9 @@
-# 🛡️ Gestão de EPIs — Spring Boot + Thymeleaf
+# 🛡️ MonitoraAi Gestão de EPIs — Spring Boot + Thymeleaf
 
 A empresa de construção civil local identificou a necessidade premente de aprimorar a gestão dos **Equipamentos de Proteção Individual (EPIs)** utilizados por seus colaboradores.
 
 Muitos deles não estão utilizando os EPIs devido a esquecimentos, seja por não trazê-los consigo ou por não retirá-los do departamento de Saúde e Segurança do Trabalho.  
 A última auditoria interna revelou uma **necessidade crítica de melhoria** na administração do uso dos EPIs.
-
----
 
 ## 📁 Estrutura de Diretórios
 
@@ -50,37 +48,33 @@ src
 
 ## 🗺️ Modelo Entidade-Relacionamento (MER)
 
-> Inserir imagem ou link para o MER aqui.  
-> _(Exemplo: imagem do draw.io ou dbdiagram.io)_
-
----
+![MER](image.png)
 
 ## 🛠️ Tecnologias e Ferramentas Utilizadas
 
-- ☕ Java
+- ☕ Java JDK 17+
 - 🌱 Spring Boot
 - 🔒 Spring Security
 - 🧾 Thymeleaf
 - 🐬 MariaDB
 - 🐿️ Lombok
-- 📷 ZXing (leitura de QR Code)
+- 📷 ZXing (QR Code)
 - 💻 HTML, CSS e JavaScript
+- 📦 GitHub
 - 📦 GitHub Projects (Kanban)
-
----
 
 ## ▶️ Como Executar o Projeto
 
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
+   git clone git@github.com:alvescamila87/api-monitoraai.git
    ```
 
 2. Configure o banco de dados em `src/main/resources/application.properties`:
 
    ```properties
-   spring.datasource.url=jdbc:mariadb://localhost:3306/epigestion
+   spring.datasource.url=jdbc:mariadb://localhost:3306/apimonitoraai
    spring.datasource.username=seu-usuario
    spring.datasource.password=sua-senha
    ```
@@ -91,8 +85,6 @@ src
    ```
    http://localhost:8080
    ```
-
----
 
 ## 📡 Endpoints da API
 
@@ -120,18 +112,15 @@ src
 ### 📦 Empréstimo (`/emprestimos`)
 
 - `GET /emprestimos` – Visualizar
-- `POST /emprestimos` – Criar empréstimo
-- `POST /emprestimos/devolucao` – Registrar devolução
+- `POST /emprestimos` – Emprestar equipamento
+- `POST /emprestimos/devolucao` – Devolver equipamento
 - `POST /emprestimos/devolucao-qrcode` – Devolução via QR Code
-
----
 
 ## 📋 Kanban do Projeto
 
 > Link para o quadro no GitHub Projects:  
 > [🔗 Acessar Kanban](https://github.com/users/alvescamila87/projects/5/views/1)
-
----
+> ![alt text](image-1.png)
 
 ## 🖼️ Imagens da Aplicação
 
@@ -149,14 +138,10 @@ Exemplo:
 ![Cadastro Equipamento](imagens/cadastro-equipamento.png)
 ```
 
----
-
 ## 👥 Autores
 
 - [Camila Alves](https://github.com/alvescamila87)
 - [João Emidio](https://github.com/emidiojoao)
-
----
 
 ## 🤝 Contribuições
 
