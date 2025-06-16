@@ -127,10 +127,16 @@ src
 - Tela de login
 ![Login](image-2.png)
 
+- Cadastro de usuário
+![Cadastro usuario](image-6.png)
+
+- Cadastro de colaborador
+![Cadastro colaborador](image-7.png)
+
 - Cadastro de equipamentos
 ![Cadastro Equipamento](image-3.png)
 
-- Tela de empréstimos
+- Cadastro de empréstimo
 ![Lista Emprestimo](image-4.png)
 
 - Leitura de QR Code
