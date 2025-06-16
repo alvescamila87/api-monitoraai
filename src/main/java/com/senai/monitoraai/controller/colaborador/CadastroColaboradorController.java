@@ -3,7 +3,6 @@ package com.senai.monitoraai.controller.colaborador;
 import com.senai.monitoraai.dtos.colaborador.ColaboradorRequestDTO;
 import com.senai.monitoraai.exceptions.InvalidOperationException;
 import com.senai.monitoraai.services.ColaboradorService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

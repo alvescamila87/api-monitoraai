@@ -7,6 +7,14 @@ select * from equipamento;
 select * from colaborador;
 select * from emprestimo;
 
+create table usuario (
+	id bigint primary key auto_increment,
+	nome varchar(255) not null,
+	email varchar(255) not null,
+	senha varchar(255) not null
+);
+
+
 INSERT INTO usuario (nome, email, senha) VALUES
 ('Camila', 'camila@gmail.com', '12345'),
 ('João', 'joao@gmail.com', '12345');
