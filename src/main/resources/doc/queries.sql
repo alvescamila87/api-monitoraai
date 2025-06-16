@@ -15,9 +15,40 @@ create table usuario (
 );
 
 
+create table colaborador (
+	id bigint primary key auto_increment,
+	nome varchar(255) not null,
+	email varchar(255) not null,
+	cargo varchar(255) not null,
+    data_nascimento date not null
+);
+
+
+create table equipamento (
+	id bigint primary key auto_increment,
+	tipo varchar(255) not null,
+	descricao varchar(255) not null
+);
+
+
+create table emprestimo (
+	id bigint primary key auto_increment,
+    colaborador_id bigint not null,
+    equipamento_id bigint not null,
+	data_emprestimo date not null,
+	data_devolucao date,
+	observacao varchar(255),
+    devolvido boolean not null default false,
+
+    constraint fk_colaborador foreign key (colaborador_id) references colaborador(id),
+    constraint fk_equipamento foreign key (equipamento_id) references equipamento(id)
+);
+
+
 INSERT INTO usuario (nome, email, senha) VALUES
 ('Camila', 'camila@gmail.com', '12345'),
 ('João', 'joao@gmail.com', '12345');
+
 
 INSERT INTO colaborador (id, nome, email, cargo, data_nascimento) VALUES
 (1, 'Moisés', 'moises@obra.com', 'Pedreiro', '1980-03-15'),
@@ -30,7 +61,6 @@ INSERT INTO colaborador (id, nome, email, cargo, data_nascimento) VALUES
 (8, 'Raquel', 'raquel@obra.com', 'Auxiliar de Almoxarifado', '1995-02-14'),
 (9, 'Noé', 'noe@obra.com', 'Encanador', '1975-12-01'),
 (10, 'Rute', 'rute@obra.com', 'Topógrafa', '1993-08-25');
-
 
 
 INSERT INTO equipamento (id, tipo, descricao) VALUES
