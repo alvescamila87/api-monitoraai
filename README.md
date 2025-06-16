@@ -131,7 +131,7 @@ src
 ![Cadastro Equipamento](image-3.png)
 
 - Tela de empréstimos
-![Lista Emprestimo](image-4.png)
+![Lista Emprestimo](![alt text](image-4.png))
 
 - Leitura de QR Code
 ![Qr Code](image-5.png)
