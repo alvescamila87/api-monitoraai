@@ -137,49 +137,66 @@ document.querySelectorAll(".delete-colaborador").forEach(function (button) {
 //      console.error("Erro ao iniciar scanner:", err);
 //    });
 //}
-function startScanner() {
-    const qrReader = document.getElementById("qr-reader");
-    qrReader.style.display = "block";
 
-    const html5QrCode = new Html5Qrcode("qr-reader");
+    let html5QrCode = null;
 
-    const config = { fps: 10, qrbox: 250 };
+    function startScanner() {
+        const container = document.getElementById("qr-reader-container");
+        container.style.display = "block";
 
-    html5QrCode.start(
-        { facingMode: "environment" }, // Câmera traseira
-        config,
-        (decodedText, decodedResult) => {
-            // Verifica se é uma URL do tipo esperada
-            if (decodedText.includes("/devolucao/qrcode/")) {
-                const id = decodedText.split("/devolucao/qrcode/")[1];
-
-                // Faz POST automático para devolver
-                fetch(`/devolucao/qrcode/${id}`, {
-                    method: 'POST'
-                })
-                .then(response => {
-                    if (response.ok) {
-                        alert("Equipamento devolvido com sucesso!");
-                        window.location.href = "/lista-emprestimo";
-                    } else {
-                        alert("Erro ao devolver equipamento.");
-                    }
-                })
-                .catch(err => {
-                    alert("Erro na solicitação de devolução.");
-                    console.error(err);
-                });
-
-                html5QrCode.stop();
-            } else {
-                alert("QR Code inválido.");
-            }
-        },
-        (errorMessage) => {
-            // erros de leitura (não precisa tratar todos)
+        if (!html5QrCode) {
+            html5QrCode = new Html5Qrcode("qr-reader");
         }
-    );
-}
+
+        html5QrCode.start(
+            { facingMode: "environment" },
+            { fps: 10, qrbox: { width: 250, height: 250 } },
+            (decodedText, decodedResult) => {
+                if (decodedText.includes("/devolucao/qrcode/")) {
+                    const id = decodedText.split("/devolucao/qrcode/")[1];
+
+                    fetch(`/devolucao/qrcode/${id}`, {
+                        method: 'POST'
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            alert("Equipamento devolvido com sucesso!");
+                            stopScanner();
+                            window.location.href = "/lista-emprestimo";
+                        } else {
+                            alert("Erro ao devolver equipamento.");
+                        }
+                    })
+                    .catch(err => {
+                        alert("Erro na solicitação de devolução.");
+                        console.error(err);
+                    });
+                } else {
+                    alert("QR Code inválido.");
+                }
+            },
+            (errorMessage) => {
+                // silencioso para erros de leitura
+            }
+        ).catch((err) => {
+            console.error("Erro ao iniciar scanner:", err);
+        });
+    }
+
+    function stopScanner() {
+        const container = document.getElementById("qr-reader-container");
+        if (html5QrCode) {
+            html5QrCode.stop().then(() => {
+                html5QrCode.clear();
+                container.style.display = "none";
+            }).catch((err) => {
+                console.error("Erro ao parar scanner:", err);
+                container.style.display = "none";
+            });
+        } else {
+            container.style.display = "none";
+        }
+    }
 
 //VALIDAÇÃO DE DATA NASCIMENTO - COLABORADOR
 $(document).ready(function () {
