@@ -90,31 +90,31 @@ src
 
 ### 🔐 Usuário (`/usuario`)
 
-- `GET /usuario` – Listar todos
-- `POST /usuario` – Criar novo
-- `PUT /usuario/{id}` – Atualizar existente
+- `GET /lista-usuario` – Listar todos
+- `POST /cadastro-usuario` – Criar novo
+- `PUT /atualizar-usuario/{id}` – Atualizar existente
 - `DELETE /usuario/{id}` – Remover
 
 ### 👷 Colaborador (`/colaborador`)
 
-- `GET /colaborador` - Listar todos
-- `POST /colaborador` - Criar novo
-- `PUT /colaborador/{id}` - Atualizar existente
+- `GET /lista-colaborador` - Listar todos
+- `POST /cadastro-colaborador` - Criar novo
+- `PUT /atualizar-colaborador/{id}` - Atualizar existente
 - `DELETE /colaborador/{id}` - Remover
 
 ### 🦺 Equipamento (`/equipamento`)
 
-- `GET /equipamento` - Listar todos
-- `POST /equipamento` - Criar novo
-- `PUT /equipamento/{id}` - Atualizar existente
+- `GET /lista-equipamento` - Listar todos
+- `POST /cadastro-equipamento` - Criar novo
+- `PUT /atualizar-equipamento/{id}` - Atualizar existente
 - `DELETE /equipamento/{id}` - Remover
 
 ### 📦 Empréstimo (`/emprestimo`)
 
-- `GET /emprestimo` – Visualizar
-- `POST /emprestimo` – Emprestar equipamento
-- `POST /emprestimo/devolucao` – Devolver equipamento
-- `POST /emprestimo/devolucao-qrcode` – Devolução via QR Code
+- `GET /visualizar-historico` – Visualizar
+- `POST /cadastro-emprestimo` – Emprestar equipamento
+- `POST /devolver-equipamento` – Devolver equipamento
+- `POST /emprestimo/qrcode` – Devolução via QR Code
 
 ## 📋 Kanban do Projeto
 
