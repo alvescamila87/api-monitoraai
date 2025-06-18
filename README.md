@@ -1,9 +1,18 @@
-# 🛡️ MonitoraAi Gestão de EPIs — Spring Boot + Thymeleaf
+# 🛡️ MonitoraAi: Gestão de EPIs
+![img_1.png](img_1.png)
 
+### Problema
 A empresa de construção civil local identificou a necessidade premente de aprimorar a gestão dos **Equipamentos de Proteção Individual (EPIs)** utilizados por seus colaboradores.
 
 Muitos deles não estão utilizando os EPIs devido a esquecimentos, seja por não trazê-los consigo ou por não retirá-los do departamento de Saúde e Segurança do Trabalho.  
 A última auditoria interna revelou uma **necessidade crítica de melhoria** na administração do uso dos EPIs.
+
+### Resolução
+Desenvolvemos um sistema simples, mas que resolve um problema real dentro de uma empresa de construção civil.
+Eles estavam enfrentando dificuldades com o uso dos Equipamentos de Proteção Individual, os famosos EPIs. Muitos colaboradores esqueciam de levar ou não passavam no setor de segurança para retirar os equipamentos. Isso gerava riscos e foi apontado numa auditoria interna como um problema sério.
+A empresa precisava saber quem pegou, qual equipamento, quando devolveu.
+Então, a gente criou um sistema web pensando em três pilares: controle, segurança e usabilidade.
+
 
 ## 📁 Estrutura de Diretórios
 
@@ -59,6 +68,7 @@ src
 - 🐬 MariaDB
 - 🐿️ Lombok
 - 📷 ZXing (QR Code)
+- 🧾 Bootstrap
 - 💻 HTML, CSS e JavaScript
 - 📦 GitHub
 - 📦 GitHub Projects (Kanban)
@@ -116,6 +126,9 @@ src
 - `POST /devolver-equipamento` – Devolver equipamento
 - `POST /emprestimo/qrcode` – Devolução via QR Code
 
+### ⚙️ Fluxo visualiza da devolução de equipamento por QRCode
+![img.png](img.png)
+
 ## 📋 Kanban do Projeto
 
 > Link para o quadro no GitHub Projects:  
@@ -139,7 +152,7 @@ src
 - Cadastro de empréstimo
 ![Lista Emprestimo](image-4.png)
 
-- Leitura de QR Code
+- Leitura de QR Code para devolução
 ![Qr Code](image-5.png)
 
 ## 👥 Autores
@@ -147,7 +160,3 @@ src
 - [Camila Alves](https://github.com/alvescamila87)
 - [João Emidio](https://github.com/emidiojoao)
 
-## 🤝 Contribuições
-
-Contribuições são bem-vindas!  
-Sinta-se à vontade para abrir uma _issue_ ou enviar um _pull request_ 🚀
