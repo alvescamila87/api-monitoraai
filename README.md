@@ -62,6 +62,7 @@ src
 ## 🛠️ Tecnologias e Ferramentas Utilizadas
 
 - ☕ Java JDK 17+
+- ☕ Java Doc
 - 🌱 Spring Boot
 - 🔒 Spring Security
 - 🧾 Thymeleaf
@@ -126,7 +127,7 @@ src
 - `POST /devolver-equipamento` – Devolver equipamento
 - `POST /emprestimo/qrcode` – Devolução via QR Code
 
-### ⚙️ Fluxo visualiza da devolução de equipamento por QRCode
+### ⚙️ Fluxo Devolução de equipamento por QRCode
 ![img.png](img.png)
 
 ## 📋 Kanban do Projeto
